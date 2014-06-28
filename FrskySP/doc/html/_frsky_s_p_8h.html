@@ -398,6 +398,7 @@ Macros</h2></td></tr>
 <tr>
 <td>value </td><td>(int) float * 100 [m] </td></tr>
 </table>
+<p>N.B. OpenTX use the first non-zero value and set it as offset reference.</p>
 <dl class="section warning"><dt>Warning</dt><dd>conflicts with GPS (physical ID 3) </dd></dl>
 
 </div>
@@ -523,6 +524,11 @@ Macros</h2></td></tr>
 <tr>
 <td>value </td><td>(int) float * 100 [m] </td></tr>
 </table>
+<p>N.B. OpenTX:</p>
+<ul>
+<li>must have a GpsFix (FRSKY_SP_GPS_LAT_B or FRSKY_SP_GPS_LONG_B must be non null)</li>
+<li>use the first non-zero value and set it as offset reference </li>
+</ul>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html#a8">FrskySP_sensor_demo/FrskySP_sensor_demo.ino</a>.</dd>
 </dl>
 </div>
@@ -801,7 +807,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 27 2014 21:21:13 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 28 2014 17:28:22 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

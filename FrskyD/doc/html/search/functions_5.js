@@ -1,22 +1,4 @@
 var searchData=
 [
-  ['sendacc',['sendAcc',['../class_frsky_d.html#a649aa6c5ed1fc9dc98e1f09c3862a441',1,'FrskyD']]],
-  ['sendalt',['sendAlt',['../class_frsky_d.html#a7a208d03ebc2f87847297a1f33421d26',1,'FrskyD']]],
-  ['sendcellvolt',['sendCellVolt',['../class_frsky_d.html#aee70e6572cc3345e74b9a6b740f38171',1,'FrskyD']]],
-  ['senddata',['sendData',['../class_frsky_d.html#a9f7a694b6b773e4d746fab9e3cff257f',1,'FrskyD']]],
-  ['sendfuel',['sendFuel',['../class_frsky_d.html#a70a93715baf3186a937362f40048e3d2',1,'FrskyD']]],
-  ['sendgpsalt',['sendGpsAlt',['../class_frsky_d.html#a13e14f736912fd680dcf46c02c9f43df',1,'FrskyD']]],
-  ['sendgpscourse',['sendGpsCourse',['../class_frsky_d.html#ac5dce0a1ead9c670d673f4e336a1ddb2',1,'FrskyD']]],
-  ['sendgpsdaymonth',['sendGpsDayMonth',['../class_frsky_d.html#a38d3532bb85d1bc40dadb827c424c742',1,'FrskyD']]],
-  ['sendgpshourmin',['sendGpsHourMin',['../class_frsky_d.html#a3e68bed80323e21c8ce5336fade5a4ef',1,'FrskyD']]],
-  ['sendgpslat',['sendGpsLat',['../class_frsky_d.html#aa4a831f51d8af42a3a428ac17977223d',1,'FrskyD']]],
-  ['sendgpslong',['sendGpsLong',['../class_frsky_d.html#acb6741c8128ea92bfd500b7a12a3329d',1,'FrskyD']]],
-  ['sendgpssec',['sendGpsSec',['../class_frsky_d.html#a9f2b2fdad0457c49c1c1e0629b4c2f3f',1,'FrskyD']]],
-  ['sendgpsspeed',['sendGpsSpeed',['../class_frsky_d.html#ac60482d858a0598c949ed6c661172c36',1,'FrskyD']]],
-  ['sendgpsspeedkmph',['sendGpsSpeedKmph',['../class_frsky_d.html#ab3101f3abcbb537de8d98ba82b5bd7d0',1,'FrskyD']]],
-  ['sendgpsspeedmph',['sendGpsSpeedMph',['../class_frsky_d.html#a05979aa7bce6d6f7a00c2929a3f579ea',1,'FrskyD']]],
-  ['sendgpsyear',['sendGpsYear',['../class_frsky_d.html#a064962d0d7a2bb22b287bd5476ef0dc5',1,'FrskyD']]],
-  ['sendrpm',['sendRpm',['../class_frsky_d.html#a6d3c863b400eb8ded619f3153153ddfd',1,'FrskyD']]],
-  ['sendtemp1',['sendTemp1',['../class_frsky_d.html#a58f1c38d8c8cf38d5a85abe430c66493',1,'FrskyD']]],
-  ['sendtemp2',['sendTemp2',['../class_frsky_d.html#a7ed1ce53ac5b5d36065775157046859f',1,'FrskyD']]]
+  ['read',['read',['../class_frsky_d.html#a100d46dfba5d0e95809e6bf16f339a4b',1,'FrskyD']]]
 ];

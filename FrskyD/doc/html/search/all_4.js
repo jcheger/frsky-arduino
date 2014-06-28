@@ -1,23 +1,9 @@
 var searchData=
 [
-  ['decodeacc',['decodeAcc',['../class_frsky_d.html#a8749f14b0fe68f566e944473aa8fca23',1,'FrskyD']]],
-  ['decodealt',['decodeAlt',['../class_frsky_d.html#a580fd2ef46e9d0b6bc09947508407fd2',1,'FrskyD']]],
+  ['decode1int',['decode1Int',['../class_frsky_d.html#af1b02d771c5e4b857f8f35af0946e2b9',1,'FrskyD']]],
   ['decodecellvolt',['decodeCellVolt',['../class_frsky_d.html#a3e7330b83abbb3741521d157ed417d72',1,'FrskyD']]],
   ['decodecellvoltid',['decodeCellVoltId',['../class_frsky_d.html#a466570e29461de060c53a9d7a8d65a63',1,'FrskyD']]],
-  ['decodefuel',['decodeFuel',['../class_frsky_d.html#a16a216b5cf224dd5776367eaf6c634aa',1,'FrskyD']]],
-  ['decodegpsalt',['decodeGpsAlt',['../class_frsky_d.html#a481e43558f9b7119aaf5767011d78cf2',1,'FrskyD']]],
-  ['decodegpscourse',['decodeGpsCourse',['../class_frsky_d.html#a1d94c84edfba1d006fe4bf18e178066f',1,'FrskyD']]],
-  ['decodegpsday',['decodeGpsDay',['../class_frsky_d.html#aa7cfa31e5bd37d4f2cedb762e06fda41',1,'FrskyD']]],
-  ['decodegpshour',['decodeGpsHour',['../class_frsky_d.html#a0cfd7f274ca59ba1dfc21119033a70fc',1,'FrskyD']]],
-  ['decodegpslat',['decodeGpsLat',['../class_frsky_d.html#a218c3a1253db4a167da7e63340563707',1,'FrskyD']]],
-  ['decodegpslatns',['decodeGpsLatNS',['../class_frsky_d.html#a60fdfdb4166e9ecb7046517b6160812e',1,'FrskyD']]],
-  ['decodegpslong',['decodeGpsLong',['../class_frsky_d.html#a92179a56dcdacb9f0c55032d1a443573',1,'FrskyD']]],
-  ['decodegpslongew',['decodeGpsLongEW',['../class_frsky_d.html#ac29baaf5fb317af6ff7813494e045b1e',1,'FrskyD']]],
-  ['decodegpsmin',['decodeGpsMin',['../class_frsky_d.html#a8b639cd7983b36ccae31fbc0bacafa34',1,'FrskyD']]],
-  ['decodegpsmonth',['decodeGpsMonth',['../class_frsky_d.html#a230947ea7a717bbfbcf67068f5f77a3a',1,'FrskyD']]],
-  ['decodegpssec',['decodeGpsSec',['../class_frsky_d.html#aa7650f7ddcda241d4231713c90afc174',1,'FrskyD']]],
-  ['decodegpsspeed',['decodeGpsSpeed',['../class_frsky_d.html#a8797b5ffa3929ac49a7285459ae9fa7c',1,'FrskyD']]],
-  ['decodegpsyear',['decodeGpsYear',['../class_frsky_d.html#a754e6141a92165bfc5b84aa375bab187',1,'FrskyD']]],
-  ['decoderpm',['decodeRpm',['../class_frsky_d.html#a0526472ef753f913c920f804257893bf',1,'FrskyD']]],
-  ['decodetemp',['decodeTemp',['../class_frsky_d.html#a98d63a80cb529a5a72a659105eff4c72',1,'FrskyD']]]
+  ['decodegpslat',['decodeGpsLat',['../class_frsky_d.html#a7ee8d182da892de20c192dc93752cb7e',1,'FrskyD']]],
+  ['decodegpslong',['decodeGpsLong',['../class_frsky_d.html#a2a512471b6da9fc2f962b494587026ad',1,'FrskyD']]],
+  ['decodeint',['decodeInt',['../class_frsky_d.html#af3edf0ab3defcfc6209cb2695aefb11a',1,'FrskyD']]]
 ];

@@ -12,6 +12,10 @@
  * value  | signed int [m], unsigned int [dm]
  * limits | ?
  * 
+ * N.B. OpenTX:
+ * * must have a GpsFix (FRSKY_SP_GPS_LAT_B or FRSKY_SP_GPS_LONG_B must be non null)
+ * * use the first non-zero value and set it as offset reference.
+ * 
  * \brief GPS
  */
 #define FRSKY_D_GPS_ALT_B    0x01    // GPS-01
@@ -22,6 +26,7 @@
  * ID(s)  | 0x02
  * value  | unsigned int [°]
  * limits | -30~250°C
+ * NIL    | -20
  */
 #define FRSKY_D_TEMP1        0x02    // TEMS-01
 
@@ -53,6 +58,7 @@
  * ID(s)  | 0x05
  * value  | unsigned int [°C]
  * limits | -30~250°C
+ * NIL    | -20
  * 
  * \brief Analog temperature
  */
@@ -83,6 +89,8 @@
  * value  | signed int [m], unsigned int [m]
  * limits | -500 ~ 9000m
  * 
+ * N.B. OpenTX use the first non-zero value and set it as offset reference.
+ * 
  * \brief Barometric altitude
  */
 #define FRSKY_D_ALT_B   0x10    // FVAS-01, FVAS-02
@@ -95,6 +103,7 @@
  * limits | ?
  * 
  * \brief GPS speed
+ * \bug display error on OpenTX 2.0.3: 100 kmph / 1.852 => 98 kmph
  */
 #define FRSKY_D_GPS_SPEED_B  0x11    // GPS-01
 
@@ -137,6 +146,7 @@
  * ID(s)  | 0x15
  * value  | ?
  *
+ * Remark: GPS returns GMT date and time.
  */
 #define FRSKY_D_GPS_DM       0x15    // GPS-01
 
@@ -146,6 +156,7 @@
  * ID(s)  | 0x16
  * value  | ?
  *
+ * Remark: GPS returns GMT date and time.
  */
 #define FRSKY_D_GPS_YEAR     0x16    // GPS-01
 
@@ -153,8 +164,9 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x17
- * value  | ?
- *
+ * value  | (int) day, (int) month
+ * 
+ * Remark: GPS returns GMT date and time.
  */
 #define FRSKY_D_GPS_HM       0x17    // GPS-01
 
@@ -164,6 +176,7 @@
  * ID(s)  | 0x18
  * value  | ?
  *
+ * Remark: GPS returns GMT date and time.
  */
 #define FRSKY_D_GPS_SEC      0x18    // GPS-01
 
@@ -214,7 +227,7 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x24
- * value  | signed float * 1000 [g]
+ * value  | (signed int) float * 1000 [g]
  * limits | -8g ~ +8g
  *
  * \brief Accelerometer
@@ -247,7 +260,7 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x28
- * value  | (signed int) float * 100
+ * value  | (signed int) float * 10
  * limits | ?
  *
  * \brief VFAS current
@@ -270,8 +283,12 @@
  * ----   | -------
  * ID(s)  | 0x3A (before "."), 0x3B (after ".")
  * value  | ?
- * limits | ?
+ * limits | VFAS: 0.5 ~ 48.0V
  *
+ * OpenTX formula: frskyData.hub.vfas = ((frskyData.hub.volts_bp * 100 + frskyData.hub.volts_ap * 10) * 21) / 110;
+ * 0 => 0
+ * 100 => 190.9
+ * 
  * \brief VFAS voltage
  */
 #define FRSKY_D_VOLTAGE_B    0x3A    // FAS40, FAS100
@@ -290,52 +307,27 @@ class FrskyD {
     FrskyD (int pinRx, int pinTx);
     SoftwareSerial *mySerial;         //!<SoftwareSerial object
 
+    // attributes
+    bool debug;
+
     // methods
     bool   available ();
 
-    float  decodeAcc        (byte *buffer);
-    float  decodeAlt        (byte *buffer);
+    float   calcFloat (int16_t bp, uint16_t ap);
+    int16_t decodeInt   (byte *buffer);
+    uint8_t decode1Int  (byte *buffer);
+        
     float  decodeCellVolt   (byte *buffer);
     int    decodeCellVoltId (byte *buffer);
-    float  decodeGpsAlt     (byte *buffer);
-    float  decodeGpsCourse  (byte *buffer);
-    int    decodeGpsDay     (byte *buffer);
-    int    decodeGpsHour    (byte *buffer);
-    String decodeGpsLat     (byte *buffer);
-    int    decodeGpsLatNS   (byte *buffer);
-    String decodeGpsLong    (byte *buffer);
-    int    decodeGpsLongEW  (byte *buffer);
-    int    decodeGpsMin     (byte *buffer);
-    int    decodeGpsMonth   (byte *buffer);
-    int    decodeGpsSec     (byte *buffer);
-    float  decodeGpsSpeed   (byte *buffer);
-    int    decodeGpsYear    (byte *buffer);
-    int    decodeFuel       (byte *buffer);
-    int    decodeRpm        (byte *buffer);
-    int    decodeTemp       (byte *buffer);
+    String decodeGpsLat     (int16_t bp, uint16_t ap);
+    String decodeGpsLong    (int16_t bp, uint16_t ap);
     
     uint16_t _fixForbiddenValues (uint16_t val);
     byte  read ();
     
-    void  sendAcc          (float valX, float valY, float valZ);
-    void  sendAlt          (float val);
-    void  sendCellVolt     (uint8_t cellID, float val);
-    void  sendData         (uint8_t id, uint16_t val);
-    void  sendFuel         (uint16_t val);
-    void  sendGpsAlt       (float val);
-    void  sendGpsCourse    (float val);
-    void  sendGpsLat       (uint8_t d, uint8_t m, uint8_t mm1, uint8_t mm2);
-    void  sendGpsLong      (uint8_t d, uint8_t m, uint8_t mm1, uint8_t mm2);
-    void  sendGpsDayMonth  (uint8_t day,  uint8_t month);
-    void  sendGpsHourMin   (uint8_t hour, uint8_t min);
-    void  sendGpsSec       (uint16_t val);
-    void  sendGpsSpeed     (float val);
-    void  sendGpsSpeedKmph (float val);
-    void  sendGpsSpeedMph  (float val);
-    void  sendGpsYear      (uint16_t val);
-    void  sendRpm          (uint16_t val);
-    void  sendTemp1        (int16_t val);
-    void  sendTemp2        (int16_t val);
+    void  sendData  (uint8_t id, int16_t val);
+    void  sendEOF ();
+    void  sendFloat (uint8_t idb, uint8_t ida, float val);
 };
 
 /**

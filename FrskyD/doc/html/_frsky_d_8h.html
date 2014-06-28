@@ -196,7 +196,7 @@ Macros</h2></td></tr>
 <tr>
 <td>ID(s) </td><td>0x24 </td></tr>
 <tr>
-<td>value </td><td>signed float * 1000 [g] </td></tr>
+<td>value </td><td>(signed int) float * 1000 [g] </td></tr>
 <tr>
 <td>limits </td><td>-8g ~ +8g </td></tr>
 </table>
@@ -264,7 +264,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>see <a class="el" href="_frsky_d_8h.html#a8a3430ea280914e700c19cc6e555d5e1">FRSKY_D_ALT_B</a> </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a9">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a8">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -289,6 +289,7 @@ Macros</h2></td></tr>
 <tr>
 <td>limits </td><td>-500 ~ 9000m </td></tr>
 </table>
+<p>N.B. OpenTX use the first non-zero value and set it as offset reference. </p>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a7">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
@@ -339,11 +340,12 @@ Macros</h2></td></tr>
 <tr>
 <td>ID(s) </td><td>0x28 </td></tr>
 <tr>
-<td>value </td><td>(signed int) float * 100 </td></tr>
+<td>value </td><td>(signed int) float * 10 </td></tr>
 <tr>
 <td>limits </td><td>? </td></tr>
 </table>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a36">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="a8d905ceffd96474b54d0316e33f2fb5b"></a>
@@ -381,7 +383,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>see <a class="el" href="_frsky_d_8h.html#ad3ca2911cac749efb4b2a00fa0665b30">FRSKY_D_GPS_ALT_B</a> </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a17">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a15">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -406,7 +408,12 @@ Macros</h2></td></tr>
 <tr>
 <td>limits </td><td>? </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a15">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<p>N.B. OpenTX:</p>
+<ul>
+<li>must have a GpsFix (FRSKY_SP_GPS_LAT_B or FRSKY_SP_GPS_LONG_B must be non null)</li>
+<li>use the first non-zero value and set it as offset reference. </li>
+</ul>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a14">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -420,7 +427,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>see <a class="el" href="_frsky_d_8h.html#a6a67ca5f771d1b92875e32a010084ffb">FRSKY_D_GPS_COURSE_B</a> </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a20">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a17">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -445,7 +452,7 @@ Macros</h2></td></tr>
 <tr>
 <td>limits </td><td>0 ~ 359.99° </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a18">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a16">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -466,7 +473,8 @@ Macros</h2></td></tr>
 <tr>
 <td>value </td><td>? </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a21">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<p>Remark: GPS returns GMT date and time. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sensor_demo_2_frsky_d_sensor_demo_8ino-example.html#a2">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</a>, and <a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a18">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -485,9 +493,10 @@ Macros</h2></td></tr>
 <tr>
 <td>ID(s) </td><td>0x17 </td></tr>
 <tr>
-<td>value </td><td>? </td></tr>
+<td>value </td><td>(int) day, (int) month </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a24">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<p>Remark: GPS returns GMT date and time. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sensor_demo_2_frsky_d_sensor_demo_8ino-example.html#a3">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</a>, and <a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a20">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -501,7 +510,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>see <a class="el" href="_frsky_d_8h.html#ae5470b3b6b53df0e6154b77594e56ccd">FRSKY_D_GPS_LAT_B</a> </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a29">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a22">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -526,7 +535,7 @@ Macros</h2></td></tr>
 <tr>
 <td>limits </td><td>? </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a27">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a21">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -547,7 +556,7 @@ Macros</h2></td></tr>
 <tr>
 <td>value </td><td>? </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a30">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a24">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -561,7 +570,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>see <a class="el" href="_frsky_d_8h.html#ab1d920cadbf3ca23fe8978f1846228ed">FRSKY_D_GPS_LONG_B</a> </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a34">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a26">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -586,7 +595,7 @@ Macros</h2></td></tr>
 <tr>
 <td>limits </td><td>? </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a32">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a25">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -607,7 +616,7 @@ Macros</h2></td></tr>
 <tr>
 <td>value </td><td>? </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a35">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a28">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -628,7 +637,8 @@ Macros</h2></td></tr>
 <tr>
 <td>value </td><td>? </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a37">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<p>Remark: GPS returns GMT date and time. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sensor_demo_2_frsky_d_sensor_demo_8ino-example.html#a4">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</a>, and <a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a29">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -642,7 +652,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>see <a class="el" href="_frsky_d_8h.html#a1f7848e22c96de8750c0db70ed8320f8">FRSKY_D_GPS_SPEED_B</a> </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a41">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a31">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -667,7 +677,8 @@ Macros</h2></td></tr>
 <tr>
 <td>limits </td><td>? </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a39">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd>display error on OpenTX 2.0.3: 100 kmph / 1.852 =&gt; 98 kmph </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a30">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -688,7 +699,8 @@ Macros</h2></td></tr>
 <tr>
 <td>value </td><td>? </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a42">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<p>Remark: GPS returns GMT date and time. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sensor_demo_2_frsky_d_sensor_demo_8ino-example.html#a5">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</a>, and <a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a32">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -713,7 +725,7 @@ Macros</h2></td></tr>
 <tr>
 <td>limits </td><td>0 ~ 60000 </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a44">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a33">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -735,8 +747,10 @@ Macros</h2></td></tr>
 <td>value </td><td>unsigned int [°] </td></tr>
 <tr>
 <td>limits </td><td>-30~250°C </td></tr>
+<tr>
+<td>NIL </td><td>-20 </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a46">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a34">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -760,8 +774,10 @@ Macros</h2></td></tr>
 <td>value </td><td>unsigned int [°C] </td></tr>
 <tr>
 <td>limits </td><td>-30~250°C </td></tr>
+<tr>
+<td>NIL </td><td>-20 </td></tr>
 </table>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a48">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a35">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -799,7 +815,8 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>see <a class="el" href="_frsky_d_8h.html#aabe1f973b1a62f335708382262e698c1">FRSKY_D_VOLTAGE_B</a> </p>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sensor_demo_2_frsky_d_sensor_demo_8ino-example.html#a8">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</a>, and <a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a38">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="aabe1f973b1a62f335708382262e698c1"></a>
@@ -821,15 +838,17 @@ Macros</h2></td></tr>
 <tr>
 <td>value </td><td>? </td></tr>
 <tr>
-<td>limits </td><td>? </td></tr>
+<td>limits </td><td>VFAS: 0.5 ~ 48.0V </td></tr>
 </table>
-
+<p>OpenTX formula: frskyData.hub.vfas = ((frskyData.hub.volts_bp * 100 + frskyData.hub.volts_ap * 10) * 21) / 110; 0 =&gt; 0 100 =&gt; 190.9 </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sensor_demo_2_frsky_d_sensor_demo_8ino-example.html#a7">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</a>, and <a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a37">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
+</dl>
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 27 2014 20:58:30 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 28 2014 17:28:22 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

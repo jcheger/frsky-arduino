@@ -12,6 +12,8 @@
  * physical ID(s) | 3 - GPS / 3 - Altimeter normal precision
  * value          | (int) float * 100 [m]
  * 
+ * N.B. OpenTX use the first non-zero value and set it as offset reference.
+ * 
  * \brief altimeter (barometric altitude)
  * \warning conflicts with GPS (physical ID 3)
  */
@@ -155,6 +157,10 @@
  * sensor ID(s)   | FRSKY_SP_GPS_ALT ~ FRSKY_SP_GPS_ALT+15 (0x0820 ~ 0x082f)
  * physical ID(s) | 3 - GPS
  * value          | (int) float * 100 [m]
+ * 
+ * N.B. OpenTX:
+ * * must have a GpsFix (FRSKY_SP_GPS_LAT_B or FRSKY_SP_GPS_LONG_B must be non null)
+ * * use the first non-zero value and set it as offset reference
  * 
  * \brief GPS altitude
  */

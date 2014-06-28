@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['read',['read',['../class_frsky_d.html#a100d46dfba5d0e95809e6bf16f339a4b',1,'FrskyD']]]
+  ['frskyd',['FrskyD',['../class_frsky_d.html#a35fd9672e4c271d9e52d88ca5621589b',1,'FrskyD']]]
 ];

@@ -10,6 +10,9 @@
  * -----------------------------
  * * use an inverted serial communication at 57600bds muxed on one port
  * * the receiver polls 27 physical sensors periodically
+ * * compare to D, the SP protocol seems much faster, but maybe not - it's easier to use for data encoding, and is
+ *   nicer to have a hub than a bus, but the polling of 27 IDs take much time - once a sensor is detected, the receiver
+ *   may accelerate the polling, typically for the GPS.
  * 
  * Slowness considerations
  * -----------------------
@@ -25,7 +28,6 @@
  * ----------------
  * \image html Smart_Port_bb.png
  * 
- * * pull down resistor on RX line (100k)
  * * pull down resistor on TX line (100k)
  * * diode between TX and RX (i.e. 1N4108)
  * 
@@ -34,6 +36,7 @@
  *
  * \version devel
  * \author Jean-Christophe Heger
+ * \see https://github.com/jcheger/frsky-arduino/ - source of this library
  * \see http://www.frsky-rc.com/
  * \see http://www.open-tx.org/
  * \copyright 2014 - Jean-Christophe Heger - Released under the LGPL 3.0 license.
