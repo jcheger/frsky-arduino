@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h2>What to know about D protocol </h2>
 <ul>
 <li>use an inverted serial communication at 9600bds</li>
-<li>compared to SP, the D protocol has no slowness issue (no time based polling) - then sensor can take as much time it needs to send data.</li>
+<li>compared to SP, the D protocol has no slowness issue (no time based polling) - then sensor can take as much time it needs to send data. Anyhow, don't send too much data without delay. It could saturate the receiver buffer and corrupt data.</li>
 <li>in Frsky's white paper, packets are supposed to be sent as frames (sets of data), on a period base</li>
 <li>the frames are used by the D hub, be are not necessary to OpenTX - only one value can be sent at a time</li>
 <li>by the way, the VFAS sensor does not use frames, but send individual packets for <a class="el" href="_frsky_d_8h.html#add38cdec5e8b9b4c6309c7a5f8ad5c75">FRSKY_D_CURRENT</a>, <a class="el" href="_frsky_d_8h.html#aabe1f973b1a62f335708382262e698c1">FRSKY_D_VOLTAGE_B</a> and <a class="el" href="_frsky_d_8h.html#a200f559eda0eb5d73e46d059a5e1ae2d">FRSKY_D_VOLTAGE_A</a>.</li>
@@ -122,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2014 17:28:22 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 28 2014 23:03:26 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

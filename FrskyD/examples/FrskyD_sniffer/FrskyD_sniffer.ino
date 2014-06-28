@@ -47,7 +47,9 @@ void decode_frame (byte *buffer, int length) {
       case FRSKY_D_ACCY:         Serial << "AccY:       " << FrskyD.decodeInt (&buffer[i+1]) / 1000.0 << " [g]\n"; break;
       case FRSKY_D_ACCZ:         Serial << "AccZ:       " << FrskyD.decodeInt (&buffer[i+1]) / 1000.0 << " [g]\n"; break;
 
-      case FRSKY_D_ALT_B:        alt_b = FrskyD.decodeInt (&buffer[i+1]); break;
+      case FRSKY_D_ALT_B:        alt_b = FrskyD.decodeInt (&buffer[i+1]);
+                                 Serial << "--- skip GPS_ALT_B\n";
+                                 break;
       case FRSKY_D_ALT_A:        alt_a = FrskyD.decodeInt (&buffer[i+1]);
                                  Serial << "Alt:        " << FrskyD.calcFloat (alt_b, alt_a) << " [m]\n";
                                  break;
@@ -56,12 +58,16 @@ void decode_frame (byte *buffer, int length) {
 
       case FRSKY_D_FUEL:         Serial << "Fuel:       " << FrskyD.decodeInt (&buffer[i+1]) << " [%]\n"; break;
  
-      case FRSKY_D_GPS_ALT_B:    gps_alt_b = FrskyD.decodeInt (&buffer[i+1]); break;
+      case FRSKY_D_GPS_ALT_B:    gps_alt_b = FrskyD.decodeInt (&buffer[i+1]);
+                                 Serial << "--- skip GPS_ALT_B\n";
+                                 break;
       case FRSKY_D_GPS_ALT_A:    gps_alt_a = FrskyD.decodeInt (&buffer[i+1]);
                                  Serial << "GpsAlt:     " << FrskyD.calcFloat (gps_alt_b, gps_alt_a) << " [m]\n";
                                  break;
  
-      case FRSKY_D_GPS_COURSE_B: gps_course_b = FrskyD.decodeInt (&buffer[i+1]); break;
+      case FRSKY_D_GPS_COURSE_B: gps_course_b = FrskyD.decodeInt (&buffer[i+1]);
+                                 Serial << "--- skip GPS_COURSE_B\n";
+                                 break;
       case FRSKY_D_GPS_COURSE_A: gps_course_a = FrskyD.decodeInt (&buffer[i+1]);
                                  Serial << "GpsCourse:  " << FrskyD.calcFloat (gps_course_b, gps_course_a) << " [" << char(176) << "]\n";
                                  break;
@@ -69,14 +75,18 @@ void decode_frame (byte *buffer, int length) {
       case FRSKY_D_GPS_DM:       Serial << "Day, Month: " << FrskyD.decode1Int (&buffer[i+1]) << " " << FrskyD.decode1Int (&buffer[i+2]) << "\n"; break;
       case FRSKY_D_GPS_HM:       Serial << "Hour, Min:  " << FrskyD.decode1Int (&buffer[i+1]) << " " << FrskyD.decode1Int (&buffer[i+2]) << "\n"; break;
  
-      case FRSKY_D_GPS_LAT_B:    gps_lat_b = FrskyD.decodeInt (&buffer[i+1]); break;
-      case FRSKY_D_GPS_LAT_A:    gps_lat_a = FrskyD.decodeInt (&buffer[i+1]); break;
+      case FRSKY_D_GPS_LAT_B:    gps_lat_b = FrskyD.decodeInt (&buffer[i+1]);
+                                 Serial << "--- skip GPS_LAT_B\n";
+                                 break;
+      case FRSKY_D_GPS_LAT_A:    gps_lat_a = FrskyD.decodeInt (&buffer[i+1]);
                                  Serial << "GpsLat:     " << FrskyD.decodeGpsLat (gps_lat_b, gps_lat_a) << "\n";
                                  break;
       
       case FRSKY_D_GPS_LAT_NS:   Serial << "GpsLatNS:   " << FrskyD.decodeInt (&buffer[i+1]) << "\n"; break;
 
-      case FRSKY_D_GPS_LONG_B:   gps_long_b = FrskyD.decodeInt (&buffer[i+1]); break;
+      case FRSKY_D_GPS_LONG_B:   gps_long_b = FrskyD.decodeInt (&buffer[i+1]);
+                                 Serial << "--- skip GPS_LONG_B\n";
+                                 break;
       case FRSKY_D_GPS_LONG_A:   gps_long_a = FrskyD.decodeInt (&buffer[i+1]);
                                  Serial << "GpsLong:    " << FrskyD.decodeGpsLong (gps_long_b, gps_long_a) << "\n";
                                  break;
@@ -84,7 +94,9 @@ void decode_frame (byte *buffer, int length) {
       case FRSKY_D_GPS_LONG_EW:  Serial << "GpsLongEW:  " << FrskyD.decodeInt (&buffer[i+1]) << "\n"; break;
       case FRSKY_D_GPS_SEC:      Serial << "Sec:        " << FrskyD.decodeInt (&buffer[i+1]) << "\n"; break;
 
-      case FRSKY_D_GPS_SPEED_B:  gps_speed_b = FrskyD.decodeInt (&buffer[i+1]); break;
+      case FRSKY_D_GPS_SPEED_B:  gps_speed_b = FrskyD.decodeInt (&buffer[i+1]);
+                                 Serial << "--- skip GPS_SPEED_B\n";
+                                 break;
       case FRSKY_D_GPS_SPEED_A:  gps_speed_b = FrskyD.decodeInt (&buffer[i+1]);
                                  Serial << "GpsSpeed:   " << FrskyD.calcFloat (gps_speed_b, gps_speed_a) << " [knots]\n";
                                  break;
@@ -95,7 +107,11 @@ void decode_frame (byte *buffer, int length) {
       case FRSKY_D_TEMP2:        Serial << "Temp2:      " << FrskyD.decodeInt (&buffer[i+1]) << " [" << char(176) << "C]\n"; break;
       case FRSKY_D_CURRENT:      Serial << "Current:    " << FrskyD.decodeInt (&buffer[i+1]) << " [A]\n"; break;
 
-      case FRSKY_D_VOLTAGE_B:    voltage_b = FrskyD.decodeInt (&buffer[i+1]); break;
+      case FRSKY_D_VFAS:         Serial << "VFAS:       " << FrskyD.decodeInt (&buffer[i+1]) / 10 << " [V]\n"; break;
+
+      case FRSKY_D_VOLTAGE_B:    voltage_b = FrskyD.decodeInt (&buffer[i+1]);
+                                 Serial << "--- skip VOLTAGE_B\n";
+                                 break;
       case FRSKY_D_VOLTAGE_A:    voltage_a = FrskyD.decodeInt (&buffer[i+1]);;
                                  Serial << "Voltage:    " << (float) (voltage_b * 10 + voltage_a) * 21 / 110 << " [V]\n";
                                  break;

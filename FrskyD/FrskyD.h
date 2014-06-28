@@ -10,13 +10,12 @@
  * ----   | -------
  * ID(s)  | 0x01 (before "."), 0x01+8 (after ".")
  * value  | signed int [m], unsigned int [dm]
- * limits | ?
  * 
  * N.B. OpenTX:
  * * must have a GpsFix (FRSKY_SP_GPS_LAT_B or FRSKY_SP_GPS_LONG_B must be non null)
  * * use the first non-zero value and set it as offset reference.
  * 
- * \brief GPS
+ * \brief GPS altitude
  */
 #define FRSKY_D_GPS_ALT_B    0x01    // GPS-01
 
@@ -25,8 +24,10 @@
  * ----   | -------
  * ID(s)  | 0x02
  * value  | unsigned int [°]
- * limits | -30~250°C
+ * limits | TEMS-01: -30~250°C
  * NIL    | -20
+ * 
+ * \brief Temperature
  */
 #define FRSKY_D_TEMP1        0x02    // TEMS-01
 
@@ -35,7 +36,7 @@
  * ----   | -------
  * ID(s)  | 0x03
  * value  | unsigned int [rpm]
- * limits | 0 ~ 60000
+ * limits | RPMS-01: 0 ~ 60000
  * 
  * \brief RPM
  */
@@ -100,7 +101,9 @@
  * ----   | -------
  * ID(s)  | 0x14, 0x14+8
  * value  | signed int [knots], unsigned in [dknots]
- * limits | ?
+ * 
+ * * 1 km   = 1.852 knots
+ * * 1 mile = 1.151 knots
  * 
  * \brief GPS speed
  * \bug display error on OpenTX 2.0.3: 100 kmph / 1.852 => 98 kmph
@@ -111,9 +114,10 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x12, 0x12+8
- * value  | ?
- * limits | ?
+ * value  | (signed int) ddmm, (unisgned int) mmmm (ddmm.mmmm)
  *
+ * 0.006s resolution step
+ * 
  * \brief GPS longitude
  */
 #define FRSKY_D_GPS_LONG_B   0x12    // GPS-01
@@ -122,8 +126,9 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x13, 0x13+8
- * value  | ?
- * limits | ?
+ * value  | (signed int) ddmm, (unisgned int) mmmm (ddmm.mmmm)
+ * 
+ * 0.006s resolution step
  * 
  * \brief GPS latitude
  */
@@ -136,7 +141,7 @@
  * value  | signed int [°], unsigned int [d°]
  * limits | 0 ~ 359.99°
  * 
- * \brief sensor: GPS course
+ * \brief GPS course
  */
 #define FRSKY_D_GPS_COURSE_B 0x14    // GPS-01
 
@@ -144,9 +149,9 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x15
- * value  | ?
+ * value  | (uint8) day, (uint8) month
  *
- * Remark: GPS returns GMT date and time.
+ * \brief GPS GMT day and month
  */
 #define FRSKY_D_GPS_DM       0x15    // GPS-01
 
@@ -154,9 +159,9 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x16
- * value  | ?
+ * value  | (uint8) null, (uint8) year
  *
- * Remark: GPS returns GMT date and time.
+ * \brief GPS GMT year
  */
 #define FRSKY_D_GPS_YEAR     0x16    // GPS-01
 
@@ -164,9 +169,9 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x17
- * value  | (int) day, (int) month
+ * value  | (uint8) hour, (uint8) minute
  * 
- * Remark: GPS returns GMT date and time.
+ * \brief GPS GMT hour and minute
  */
 #define FRSKY_D_GPS_HM       0x17    // GPS-01
 
@@ -174,9 +179,9 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x18
- * value  | ?
+ * value  | (uint8) null, (uint8) second
  *
- * Remark: GPS returns GMT date and time.
+ * \brief GPS GMT second
  */
 #define FRSKY_D_GPS_SEC      0x18    // GPS-01
 
@@ -228,7 +233,7 @@
  * ----   | -------
  * ID(s)  | 0x24
  * value  | (signed int) float * 1000 [g]
- * limits | -8g ~ +8g
+ * limits | FGS-01: -8g ~ +8g
  *
  * \brief Accelerometer
  */
@@ -239,7 +244,7 @@
  * ----   | -------
  * ID(s)  | 0x25
  * value  | (signed int) float * 1000 [g]
- * limits | -8g ~ +8g
+ * limits | FGS-01: -8g ~ +8g
  *
  * \brief Accelerometer
  */
@@ -250,7 +255,7 @@
  * ----   | -------
  * ID(s)  | 0x26
  * value  | (signed int) float * 1000 [g]
- * limits | -8g ~ +8g
+ * limits | FGS-01: -8g ~ +8g
  *
  * \brief Accelerometer
  */
@@ -260,21 +265,19 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x28
- * value  | (signed int) float * 10
- * limits | ?
+ * value  | (signed int) float * 10 [A]
  *
- * \brief VFAS current
+ * \brief FAS current
  */
 #define FRSKY_D_CURRENT      0x28    // FAS40, FAS100
 
 /**
  * info   | comment
  * ----   | -------
- * ID(s)  | 0x49
- * value  | ?
- * limits | ?
+ * ID(s)  | 0x39
+ * value  | (signed int) float * 10 [V]
  *
- * \brief Home made current sensors
+ * \brief Home made current sensors (aka VFAS)
  */
 #define FRSKY_D_VFAS         0x39    // home made current sensors
 
@@ -282,14 +285,31 @@
  * info   | comment
  * ----   | -------
  * ID(s)  | 0x3A (before "."), 0x3B (after ".")
- * value  | ?
- * limits | VFAS: 0.5 ~ 48.0V
+ * value  | bugged formula (see below)
+ * limits | FAS: 0.5 ~ 48.0V
  *
- * OpenTX formula: frskyData.hub.vfas = ((frskyData.hub.volts_bp * 100 + frskyData.hub.volts_ap * 10) * 21) / 110;
- * 0 => 0
- * 100 => 190.9
+ * The formula is bugged, with a pitiful resolution of 0.19V for a 4 bytes value (which should have a 0.01V resolution).
+ * There is oviously a mistake in the design. If you want to make a voltage sensor, use the \ref FRSKY_D_VFAS ID. It's
+ * much more simple.
  * 
- * \brief VFAS voltage
+ * Encoding formula
+ * ----------------
+ * ~~~~~~~~~~~~~~~~~~~~~
+ * float volts = 12.3;
+ * volts = volts * 110 / 21;
+ * uint16_t volts_b = (int) volts / 10;
+ * uint16_t volts_a = (int) volts - (volts_b * 10);
+ * FrskyD.sendData (FRSKY_D_VOLTAGE_B, volts_b);
+ * FrskyD.sendData (FRSKY_D_VOLTAGE_A, volts_a);
+ * ~~~~~~~~~~~~~~~~~~~~~
+ * 
+ * Decoding formula
+ * ----------------
+ * ~~~~~~~~~~~~~~~~~~~~~
+ * (float) (volts_b * 10 + vols_a) * 21 / 110 
+ * ~~~~~~~~~~~~~~~~~~~~~
+ * 
+ * \brief FAS voltage
  */
 #define FRSKY_D_VOLTAGE_B    0x3A    // FAS40, FAS100
 
@@ -323,11 +343,11 @@ class FrskyD {
     String decodeGpsLong    (int16_t bp, uint16_t ap);
     
     uint16_t _fixForbiddenValues (uint16_t val);
-    byte  read ();
+    byte   read ();
     
-    void  sendData  (uint8_t id, int16_t val);
-    void  sendEOF ();
-    void  sendFloat (uint8_t idb, uint8_t ida, float val);
+    void   sendCellVolt (uint8_t id, float val);
+    void   sendData  (uint8_t id, int16_t val);
+    void   sendFloat (uint8_t idb, uint8_t ida, float val);
 };
 
 /**

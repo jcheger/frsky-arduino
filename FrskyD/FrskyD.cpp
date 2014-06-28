@@ -10,7 +10,8 @@
  * -----------------------------
  * * use an inverted serial communication at 9600bds
  * * compared to SP, the D protocol has no slowness issue (no time based polling) - then sensor can take as much time
- *   it needs to send data.
+ *   it needs to send data. Anyhow, don't send too much data without delay. It could saturate the receiver buffer and
+ *   corrupt data.
  * * in Frsky's white paper, packets are supposed to be sent as frames (sets of data),
  *   on a period base
  * * the frames are used by the D hub, be are not necessary to OpenTX - only one value can be sent at a time
@@ -177,6 +178,19 @@ byte FrskyD::read () {
 }
 
 /**
+ * \brief Send lipo cell voltage
+ * \param id cell ID
+ * \param val voltage
+ */
+void FrskyD::sendCellVolt (uint8_t id, float val) {
+    uint16_t voltage = val * 500;
+    uint8_t v1 = (voltage & 0x0f00) >> 8 | (id << 4 & 0xf0);
+    uint8_t v2 = (voltage & 0x00ff);
+    uint16_t value = (v1 & 0x00ff) | (v2 << 8);
+    this->sendData (FRSKY_D_CELL_VOLT, value);
+}
+
+/**
  * Send a value (D protocol)
  * In the D protocol, the hub sends frames periodically @ 9600 bds.
  *
@@ -200,45 +214,13 @@ void FrskyD::sendData (uint8_t id, int16_t val) {
     this->mySerial->write (0x5E);
     this->mySerial->write (id);
 
-    if (this->debug) {
-        Serial.println ();
-        Serial.print ("BEBUG: ");
-        Serial.print (0x5E, HEX);
-        Serial.print (" ");
-        Serial.print (id, HEX);
-        Serial.print (" ");
-    }
-
     for (i=0; i<2; i++) {
-        if (d[i] == 0x5E) {
-            this->mySerial->write (0x5D);
-            this->mySerial->write (0x3E);
-            if (this->debug) {
-                Serial.print (0x5D, HEX);
-                Serial.print (0x3E, HEX);
-            }
-        } else if (d[i] == 0x5D) {
-            this->mySerial->write (0x5D);
-            this->mySerial->write (0x3D);
-            if (this->debug) {
-                Serial.print (0x5D, HEX);
-                Serial.print (0x3D, HEX);
-            }
-        } else {
-            this->mySerial->write (d[i]);
-            if (this->debug) Serial.print (d[i], HEX);
-        }
+        if      (d[i] == 0x5E) { this->mySerial->write (0x5D); this->mySerial->write (0x3E); }
+        else if (d[i] == 0x5D) { this->mySerial->write (0x5D); this->mySerial->write (0x3D); }
+        else                     this->mySerial->write (d[i]);
     }
-    
-    if (this->debug) Serial.print ("  ");
-}
 
-/**
- * Send End-Of-Frame footer
- */
-void FrskyD::sendEOF () {
-    this->mySerial->write (0x5E);
-    if (this->debug) Serial.println (0x5E, HEX);
+    this->mySerial->write (0x5E);   // End of frame
 }
 
 void FrskyD::sendFloat (uint8_t idb, uint8_t ida, float val) {
@@ -255,18 +237,3 @@ void FrskyD::sendFloat (uint8_t idb, uint8_t ida, float val) {
     this->sendData (idb, bp);
     this->sendData (ida, ap);
 }
-
-/**
- * \brief Send lipo cell voltage
- * \param id cell ID
- * \param val voltage
- */
-/*
-void FrskyD::sendCellVolt (uint8_t id, float val) {
-    uint16_t voltage = val * 500;
-    uint8_t v1 = (voltage & 0x0f00) >> 8 | (id << 4 & 0xf0);
-    uint8_t v2 = (voltage & 0x00ff);
-    uint16_t value = (v1 & 0x00ff) | (v2 << 8);
-    this->sendData (FRSKY_D_CELL_VOLT, value);
-}
-*/

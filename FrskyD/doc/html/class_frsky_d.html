@@ -126,10 +126,11 @@ Public Member Functions</h2></td></tr>
 byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a100d46dfba5d0e95809e6bf16f339a4b">read</a> ()</td></tr>
 <tr class="memdesc:a100d46dfba5d0e95809e6bf16f339a4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">SoftwareSerial.read() passthrough. <br/></td></tr>
 <tr class="separator:a100d46dfba5d0e95809e6bf16f339a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a929c9304aacc6aceeed6c5a90a9efc00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (uint8_t id, float val)</td></tr>
+<tr class="memdesc:a929c9304aacc6aceeed6c5a90a9efc00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send lipo cell voltage.  <a href="#a929c9304aacc6aceeed6c5a90a9efc00">More...</a><br/></td></tr>
+<tr class="separator:a929c9304aacc6aceeed6c5a90a9efc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a755622d280a41aafcc6de3dcc386c3a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (uint8_t id, int16_t val)</td></tr>
 <tr class="separator:a755622d280a41aafcc6de3dcc386c3a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68bfc0ec7e65ed3fe3b8b65126955f2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a68bfc0ec7e65ed3fe3b8b65126955f2f">sendEOF</a> ()</td></tr>
-<tr class="separator:a68bfc0ec7e65ed3fe3b8b65126955f2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a0ae3efc42d48ebd1f39a1487002912"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a0ae3efc42d48ebd1f39a1487002912"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>sendFloat</b> (uint8_t idb, uint8_t ida, float val)</td></tr>
 <tr class="separator:a2a0ae3efc42d48ebd1f39a1487002912"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -446,6 +447,41 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b></td></tr>
 </dl>
 </div>
 </div>
+<a class="anchor" id="a929c9304aacc6aceeed6c5a90a9efc00"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FrskyD::sendCellVolt </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send lipo cell voltage. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>cell ID </td></tr>
+    <tr><td class="paramname">val</td><td>voltage </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a755622d280a41aafcc6de3dcc386c3a9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -492,23 +528,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b></td></tr>
 </dl>
 </div>
 </div>
-<a class="anchor" id="a68bfc0ec7e65ed3fe3b8b65126955f2f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FrskyD::sendEOF </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Send End-Of-Frame footer </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sensor_demo_2_frsky_d_sensor_demo_8ino-example.html#a9">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</a>.</dd>
-</dl>
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_frsky_d_8h_source.html">FrskyD.h</a></li>
 <li>FrskyD.cpp</li>
@@ -516,7 +535,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2014 17:28:22 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 28 2014 23:03:26 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
