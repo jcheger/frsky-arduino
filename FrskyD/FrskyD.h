@@ -216,6 +216,7 @@
  * ID(s)  | 0x22
  * value  | ?
  *
+ * \todo GPS only works for East at now
  */
 #define FRSKY_D_GPS_LONG_EW  0x22    // GPS-01
 
@@ -225,6 +226,7 @@
  * ID(s)  | 0x23
  * value  | ?
  *
+ * \todo GPS only works for North at now
  */
 #define FRSKY_D_GPS_LAT_NS   0x23    // GPS-01
 

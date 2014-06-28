@@ -162,7 +162,7 @@ String FrskyD::decodeGpsLong (int16_t bp, uint16_t ap) {
 }
 
 /**
- * \todo
+ * \todo forbidden values are not corrected yet
  */
 uint16_t FrskyD::_fixForbiddenValues (uint16_t val) {
     uint8_t byte1 = val & 0x00ff;

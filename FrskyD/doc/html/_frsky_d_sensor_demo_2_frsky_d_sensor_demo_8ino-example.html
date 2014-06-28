@@ -84,14 +84,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="preprocessor">#include &lt;SoftwareSerial.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;Streaming.h&gt;</span></div>
 <div class="line"></div>
-<div class="line"><span class="preprocessor">#define DEBUG 1</span></div>
-<div class="line"><span class="preprocessor"></span></div>
 <div class="line"><a name="_a0"></a><a class="code" href="class_frsky_d.html">FrskyD</a> <a class="code" href="class_frsky_d.html">FrskyD</a> (10, 11);</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
 <div class="line">  Serial.begin (115200);</div>
 <div class="line">  Serial.println (<span class="stringliteral">&quot;BEGIN&quot;</span>);</div>
-<div class="line">  <span class="comment">//FrskyD.debug = 1;</span></div>
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> loop () {</div>
@@ -100,73 +97,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 <div class="line">  Serial &lt;&lt; <span class="stringliteral">&quot;Alt: &quot;</span> &lt;&lt; alt &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"></div>
-<div class="line">  <span class="comment">// Frame1 (200ms)</span></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a name="a1"></a><a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a2"></a><a class="code" href="_frsky_d_8h.html#a1d1ba130253b6847c629e08a17531f6a">FRSKY_D_ACCX</a>,  1.1 * 1000.0);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a3"></a><a class="code" href="_frsky_d_8h.html#ae8759e6d877e998b0756b16393219b7e">FRSKY_D_ACCY</a>, -1.2 * 1000.0);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a4"></a><a class="code" href="_frsky_d_8h.html#a53ad70916adb1801c97af3b276e5222a">FRSKY_D_ACCZ</a>,  1.3 * 1000.0);</div>
 <div class="line">  </div>
-<div class="line">  <span class="comment">// Frame2 (1s)</span></div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">// Frame3 (5s)</span></div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_ACCX,  1.1 * 1000.0);  // OK</span></div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_ACCY, -1.2 * 1000.0);  // OK</span></div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_ACCZ,  1.3 * 1000.0);  // OK</span></div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">//FrskyD.sendFloat (FRSKY_D_ALT_B, FRSKY_D_ALT_A, alt);  // OK</span></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a name="a5"></a>sendFloat (<a name="a6"></a><a class="code" href="_frsky_d_8h.html#a8a3430ea280914e700c19cc6e555d5e1">FRSKY_D_ALT_B</a>, <a name="a7"></a><a class="code" href="_frsky_d_8h.html#a28a01b6558580fe07374799527246b2e">FRSKY_D_ALT_A</a>, alt);</div>
 <div class="line"></div>
-<div class="line"><span class="comment">/*  </span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (0, 3.01);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (1, 3.02);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (2, 3.03);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (3, 3.04);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (4, 3.05);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (5, 3.06);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (6, 3.07);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (7, 3.08);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (8, 3.09);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (9, 3.10);       // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (10, 3.11);      // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">  FrskyD.sendCellVolt (11, 3.12);      // 0 ~ 8.18V                OK</span></div>
-<div class="line"><span class="comment">*/</span></div>
+<div class="line">  delay (200);  <span class="comment">// wait a bit to flush buffer</span></div>
 <div class="line"></div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_FUEL, 23);  // OK</span></div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">//FrskyD.sendFloat (FRSKY_D_GPS_ALT_B, FRSKY_D_GPS_ALT_A, alt);  // OK</span></div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">//FrskyD.sendGpsDayMonth (10, 12);</span></div>
-<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a name="a1"></a><a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a2"></a><a class="code" href="_frsky_d_8h.html#a846ff217cdcf4aae2106e5190d957e01">FRSKY_D_GPS_DM</a>, 10 &lt;&lt; 8 | 12);</div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">//FrskyD.sendGpsHourMin (14, 25);</span></div>
-<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a3"></a><a class="code" href="_frsky_d_8h.html#ae78112eece95f4e66870c24a8ab8d842">FRSKY_D_GPS_HM</a>, 14 &lt;&lt; 8 | 25);</div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_GPS_LAT_B, 46 &lt;&lt; 8 | 42);  // FAIL</span></div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_GPS_LAT_A, 46 &lt;&lt; 8 | 43);  // FAIL</span></div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_GPS_LONG_B, 6 &lt;&lt; 8 | 34);  // FAIL</span></div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_GPS_LONG_A, 20 &lt;&lt; 8 | 61); // FAIL</span></div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">// FrskyD.sendGpsSec (36);</span></div>
-<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a4"></a><a class="code" href="_frsky_d_8h.html#a0993a61046ef526a55c3f3128da34811">FRSKY_D_GPS_SEC</a>, 36);</div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">//FrskyD.sendFloat (FRSKY_D_GPS_SPEED_B, FRSKY_D_GPS_SPEED_A, 100 / 1.852);  // OK, BUG</span></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a name="a8"></a><a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (0, 3.01);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (1, 3.02);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (2, 3.03);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (3, 3.04);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (4, 3.05);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (5, 3.06);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (6, 3.07);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (7, 3.08);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (8, 3.09);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (9, 3.10);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (10, 3.11);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (11, 3.12);</div>
 <div class="line"></div>
-<div class="line">  <span class="comment">// FrskyD.sendGpsYear (14);</span></div>
-<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a5"></a><a class="code" href="_frsky_d_8h.html#a5738993ad27e06d4351453952a886759">FRSKY_D_GPS_YEAR</a>, 14);</div>
-<div class="line">  </div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_TEMP1, 28);</span></div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_TEMP2, -18);</span></div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_RPM, 11111 / 60);  // OK</span></div>
+<div class="line">  delay (200);  <span class="comment">// wait a bit to flush buffer</span></div>
 <div class="line"></div>
-<div class="line">  <span class="comment">//FrskyD.sendData (FRSKY_D_CURRENT, 23.4 * 10);  // OK</span></div>
-<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a name="a6"></a>sendFloat (<a name="a7"></a><a class="code" href="_frsky_d_8h.html#aabe1f973b1a62f335708382262e698c1">FRSKY_D_VOLTAGE_B</a>, <a name="a8"></a><a class="code" href="_frsky_d_8h.html#a200f559eda0eb5d73e46d059a5e1ae2d">FRSKY_D_VOLTAGE_A</a>, 100.0 / 1.92); <span class="comment">// FAIL</span></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a9"></a><a class="code" href="_frsky_d_8h.html#a8d905ceffd96474b54d0316e33f2fb5b">FRSKY_D_FUEL</a>, 23);</div>
 <div class="line"></div>
-<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.sendEOF ();</div>
-<div class="line">  alt += 1;</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.sendFloat (<a name="a10"></a><a class="code" href="_frsky_d_8h.html#ad3ca2911cac749efb4b2a00fa0665b30">FRSKY_D_GPS_ALT_B</a>, <a name="a11"></a><a class="code" href="_frsky_d_8h.html#af3ec53649684be341c26b4276f5762c7">FRSKY_D_GPS_ALT_A</a>, alt);</div>
 <div class="line">  </div>
-<div class="line">  delay (200);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.sendFloat (<a name="a12"></a><a class="code" href="_frsky_d_8h.html#a6a67ca5f771d1b92875e32a010084ffb">FRSKY_D_GPS_COURSE_B</a>, <a name="a13"></a><a class="code" href="_frsky_d_8h.html#ab03c256b28e0f431f01103cbb0b2ed31">FRSKY_D_GPS_COURSE_A</a>, 12.34);</div>
+<div class="line">  </div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a>  (<a name="a14"></a><a class="code" href="_frsky_d_8h.html#a846ff217cdcf4aae2106e5190d957e01">FRSKY_D_GPS_DM</a>, 10 &lt;&lt; 8 | 12);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a>  (<a name="a15"></a><a class="code" href="_frsky_d_8h.html#ae78112eece95f4e66870c24a8ab8d842">FRSKY_D_GPS_HM</a>, 14 &lt;&lt; 8 | 25);</div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">// 46° 56&#39; 52.52&#39;&#39;</span></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a16"></a><a class="code" href="_frsky_d_8h.html#ae5470b3b6b53df0e6154b77594e56ccd">FRSKY_D_GPS_LAT_B</a>, 46 * 100 + 42);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a17"></a><a class="code" href="_frsky_d_8h.html#ad5e6c5150390f3f1ca83498d5fdba332">FRSKY_D_GPS_LAT_A</a>, 52.52 * 10000 / 60);</div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">// 7° 26&#39; 40.59&#39;&#39;</span></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a18"></a><a class="code" href="_frsky_d_8h.html#ab1d920cadbf3ca23fe8978f1846228ed">FRSKY_D_GPS_LONG_B</a>, 7 * 100 + 26);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a19"></a><a class="code" href="_frsky_d_8h.html#a3192c07ffce378b8bc583b0d9fbebb92">FRSKY_D_GPS_LONG_A</a>, 40.59 * 10000 / 60);</div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a>  (<a name="a20"></a><a class="code" href="_frsky_d_8h.html#a0993a61046ef526a55c3f3128da34811">FRSKY_D_GPS_SEC</a>, 36);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.sendFloat (<a name="a21"></a><a class="code" href="_frsky_d_8h.html#a1f7848e22c96de8750c0db70ed8320f8">FRSKY_D_GPS_SPEED_B</a>, <a name="a22"></a><a class="code" href="_frsky_d_8h.html#a850a63a252b7cb1fad65c8117cc31ff5">FRSKY_D_GPS_SPEED_A</a>, 100 / 1.852);  <span class="comment">// OK, BUG</span></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a>  (<a name="a23"></a><a class="code" href="_frsky_d_8h.html#a5738993ad27e06d4351453952a886759">FRSKY_D_GPS_YEAR</a>, 14);</div>
+<div class="line"></div>
+<div class="line">  delay (200);  <span class="comment">// wait a bit to flush buffer</span></div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a>  (<a name="a24"></a><a class="code" href="_frsky_d_8h.html#ad85431074e137d6e70fc4232159bf217">FRSKY_D_TEMP1</a>, 28);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a>  (<a name="a25"></a><a class="code" href="_frsky_d_8h.html#a9bc2f6d6d140981adb21e5bfa274e79a">FRSKY_D_TEMP2</a>, -18);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a>  (<a name="a26"></a><a class="code" href="_frsky_d_8h.html#a25f95f81e25268c37f6a95c28824f9d5">FRSKY_D_RPM</a>, 11111 / 60);</div>
+<div class="line"></div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a>  (<a name="a27"></a><a class="code" href="_frsky_d_8h.html#add38cdec5e8b9b4c6309c7a5f8ad5c75">FRSKY_D_CURRENT</a>, 23.4 * 10);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a>  (<a name="a28"></a><a class="code" href="_frsky_d_8h.html#ab79fad2e6893a7a1a04bba9c08074697">FRSKY_D_VFAS</a>, 12.3 * 10);</div>
+<div class="line"></div>
+<div class="line">  alt += .1;</div>
+<div class="line">  </div>
+<div class="line">  delay (200);  <span class="comment">// wait a bit to flush buffer</span></div>
 <div class="line">}</div>
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2014 23:03:26 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 28 2014 23:19:29 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
