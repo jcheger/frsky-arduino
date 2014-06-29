@@ -181,14 +181,14 @@
 /**
  * info | comment
  * ---- | -------
- * sensor ID(s)   | FRSKY_SP_GPS_COURS ~ FRSKY_SP_GPS_COURS+15 (0x0840 ~ 0x084f)
+ * sensor ID(s)   | FRSKY_SP_GPS_COURSE ~ FRSKY_SP_GPS_COURSE+15 (0x0840 ~ 0x084f)
  * physical ID(s) | 3 - GPS
  * value          | (int) float * 100 [°]
  * limits         | 0~359.99°
  * 
- * \brief GPS course
+ * \brief GPS course (heading)
  */
-#define FRSKY_SP_GPS_COURS      0x0840
+#define FRSKY_SP_GPS_COURSE      0x0840
 
 /**
  * info | comment

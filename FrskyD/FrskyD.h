@@ -141,7 +141,7 @@
  * value  | signed int [°], unsigned int [d°]
  * limits | 0 ~ 359.99°
  * 
- * \brief GPS course
+ * \brief GPS course (heading)
  */
 #define FRSKY_D_GPS_COURSE_B 0x14    // GPS-01
 

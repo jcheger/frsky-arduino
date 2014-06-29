@@ -14,7 +14,7 @@ var searchData=
   ['frsky_5fsp_5fcurr',['FRSKY_SP_CURR',['../_frsky_s_p_8h.html#ae20e8c23c08351cc824d8b1d4df2c539',1,'FrskySP.h']]],
   ['frsky_5fsp_5ffuel',['FRSKY_SP_FUEL',['../_frsky_s_p_8h.html#aa8bf0996d3d1fe149563ebe9e9bdf77f',1,'FrskySP.h']]],
   ['frsky_5fsp_5fgps_5falt',['FRSKY_SP_GPS_ALT',['../_frsky_s_p_8h.html#a4141f914f14ad4adaa5b19de59164173',1,'FrskySP.h']]],
-  ['frsky_5fsp_5fgps_5fcours',['FRSKY_SP_GPS_COURS',['../_frsky_s_p_8h.html#a4ca7e3914887c09348bdcdb94f663408',1,'FrskySP.h']]],
+  ['frsky_5fsp_5fgps_5fcourse',['FRSKY_SP_GPS_COURSE',['../_frsky_s_p_8h.html#ae88337c1f4eb8ef1cae4889580862520',1,'FrskySP.h']]],
   ['frsky_5fsp_5fgps_5flong_5flati',['FRSKY_SP_GPS_LONG_LATI',['../_frsky_s_p_8h.html#aea70c529758d6c745c5a5c9ede625b0d',1,'FrskySP.h']]],
   ['frsky_5fsp_5fgps_5fspeed',['FRSKY_SP_GPS_SPEED',['../_frsky_s_p_8h.html#af053094e5253490e1767d8a65fd45725',1,'FrskySP.h']]],
   ['frsky_5fsp_5fgps_5ftime_5fdate',['FRSKY_SP_GPS_TIME_DATE',['../_frsky_s_p_8h.html#a2f254b452c88a12e121e2021146f8359',1,'FrskySP.h']]],
