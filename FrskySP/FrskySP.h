@@ -328,3 +328,7 @@ class FrskySP {
 /**
  * \example FrskySP_sensor_demo/FrskySP_sensor_demo.ino
  */
+
+/**
+ * \example FrskySP_rpm_sensor/FrskySP_rpm_sensor.ino
+ */
