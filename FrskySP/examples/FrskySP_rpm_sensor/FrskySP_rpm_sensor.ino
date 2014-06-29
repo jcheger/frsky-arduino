@@ -18,6 +18,7 @@
  * Tests with:
  * - EagleTree Brushless RPM Sensor V2 - pull-up: 1 kΩ
  * - EagleTree Optical RPM Sensor - pull-up: 10 kΩ
+ * - EagleTree Hall RPM Sensor - pull-up: 1 kΩ or 10 kΩ
  */
 
 #include <FrskySP.h>
