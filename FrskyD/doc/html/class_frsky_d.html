@@ -131,8 +131,7 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a929c9304aacc6aceeed6c5a90a9efc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a755622d280a41aafcc6de3dcc386c3a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (uint8_t id, int16_t val)</td></tr>
 <tr class="separator:a755622d280a41aafcc6de3dcc386c3a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a0ae3efc42d48ebd1f39a1487002912"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a0ae3efc42d48ebd1f39a1487002912"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendFloat</b> (uint8_t idb, uint8_t ida, float val)</td></tr>
+<tr class="memitem:a2a0ae3efc42d48ebd1f39a1487002912"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a2a0ae3efc42d48ebd1f39a1487002912">sendFloat</a> (uint8_t idb, uint8_t ida, float val)</td></tr>
 <tr class="separator:a2a0ae3efc42d48ebd1f39a1487002912"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -141,9 +140,6 @@ Public Attributes</h2></td></tr>
 SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a503ba13043eda599b8a446bfc6eef71d">mySerial</a></td></tr>
 <tr class="memdesc:a503ba13043eda599b8a446bfc6eef71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">SoftwareSerial object. <br/></td></tr>
 <tr class="separator:a503ba13043eda599b8a446bfc6eef71d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99cfc2b0c0613bf07ddd65c261b00930"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99cfc2b0c0613bf07ddd65c261b00930"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b></td></tr>
-<tr class="separator:a99cfc2b0c0613bf07ddd65c261b00930"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Frsky D class </p>
@@ -245,7 +241,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Return a float value, composed by 2 bytes as signed integer and 2 bytes as decimals. Refered as ~before "."~ and ~after "."~ values. </p>
+<p>Return a float value, composed by 2 bytes as signed integer and 2 bytes as decimals. Refered as <em>before</em> "." <em>and</em> <em>after</em> "." <em>values</em>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">bp</td><td>value before "." </td></tr>
@@ -365,7 +361,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b></td></tr>
 <p>Decode the <a class="el" href="_frsky_d_8h.html#ae5470b3b6b53df0e6154b77594e56ccd">FRSKY_D_GPS_LAT_B</a> packets. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer</td><td>buffer pointer </td></tr>
+    <tr><td class="paramname">bp</td><td>value B (before ".") </td></tr>
+    <tr><td class="paramname">ap</td><td>value A (after ".") </td></tr>
   </table>
   </dd>
 </dl>
@@ -401,7 +398,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b></td></tr>
 <p>Decode the <a class="el" href="_frsky_d_8h.html#ab1d920cadbf3ca23fe8978f1846228ed">FRSKY_D_GPS_LONG_B</a> packets. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer</td><td>buffer pointer </td></tr>
+    <tr><td class="paramname">bp</td><td>value B (before ".") </td></tr>
+    <tr><td class="paramname">ap</td><td>value A (after ".") </td></tr>
   </table>
   </dd>
 </dl>
@@ -529,14 +527,56 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b></td></tr>
 </dl>
 </div>
 </div>
+<a class="anchor" id="a2a0ae3efc42d48ebd1f39a1487002912"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FrskyD::sendFloat </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>idb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>ida</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Send a float as 2 packets (before "." and after ".") </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idb</td><td>ID B (before ".") </td></tr>
+    <tr><td class="paramname">ida</td><td>ID A (after ".") </td></tr>
+    <tr><td class="paramname">val</td><td>value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sensor_demo_2_frsky_d_sensor_demo_8ino-example.html#a5">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</a>.</dd>
+</dl>
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_frsky_d_8h_source.html">FrskyD.h</a></li>
-<li>FrskyD.cpp</li>
+<li><a class="el" href="_frsky_d_8cpp.html">FrskyD.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 29 2014 13:10:01 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 30 2014 14:52:41 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

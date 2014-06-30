@@ -1,3 +1,16 @@
+/*
+ * Requirements
+ * ------------
+ * - FrskyD library - https://github.com/jcheger/frsky-arduino
+ * 
+ * - Streaming library - http://arduiniana.org/libraries/streaming/
+ *                       http://arduiniana.org/Streaming/Streaming5.zip
+ *
+ * 
+ * origin: https://github.com/jcheger/frsky-arduino
+ * author: Jean-Christophe Heger <jcheger@ordinoscope.net>
+ */
+ 
 #include <FrskyD.h>
 #include <SoftwareSerial.h>
 #include <Streaming.h>

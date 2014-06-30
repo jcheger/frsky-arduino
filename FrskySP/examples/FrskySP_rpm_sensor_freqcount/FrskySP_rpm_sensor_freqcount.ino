@@ -1,10 +1,12 @@
 /*
  * RPM sensor for Frsky Smart Port protocol.
  *
- * Requires FrskySP library: https://github.com/jcheger/frsky-arduino
- * Requires FreqCount library: https://www.pjrc.com/teensy/td_libs_FreqCount.html
+ * Requirements
+ * ------------
+ * - FrskySP library: https://github.com/jcheger/frsky-arduino
+ * - FreqCount library: https://www.pjrc.com/teensy/td_libs_FreqCount.html
  * 
- * The RPM pin is 5 and cannot be changed. It's defined by the FreqCount library.
+ * The RPM pin is 5 and cannot be changed (defined by the FreqCount library). The RPMs are refreshed once per second.
  *
  * See the the images in the example folder to see the pinout.
  *
@@ -19,6 +21,10 @@
  * - EagleTree Brushless RPM Sensor V2 - pull-up: 1 kΩ
  * - EagleTree Optical RPM Sensor - pull-up: 10 kΩ
  * - EagleTree Hall RPM Sensor - pull-up: 1 kΩ or 10 kΩ
+ * 
+ * 
+ * origin: https://github.com/jcheger/frsky-arduino
+ * author: Jean-Christophe Heger <jcheger@ordinoscope.net>
  */
 
 #include <FrskySP.h>
@@ -29,12 +35,12 @@
 
 FrskySP FrskySP (10, 11);
 
-float rpm_ratio = 5.5;
+float rpm_ratio = 7;
 
 void setup () {
   #if DEBUG
   Serial.begin (115200);
-  Serial.println ("DEBUG mode");
+  Serial.println ("FrskySP rpm sensor freqcount");
   #endif
   FreqCount.begin(1000);
 }
@@ -45,8 +51,6 @@ void loop () {
   static unsigned long rpm_freq = 0;
   uint16_t             rpm_send = 0;
 
-  rpm_freq = FreqCount.read();
-
   while (FrskySP.available ()) {
 
     if (FrskySP.read () == 0x7E) {
@@ -56,7 +60,8 @@ void loop () {
       switch (FrskySP.read ()) {
 
         case 0xE4:
-          // The brushless sensor triggers 1 pulse per second when no pulse is detected. Erase them.
+          rpm_freq = FreqCount.read();
+          // The brushless sensor triggers about 1 pulse per second when no pulse is detected. Erase them.
           rpm_send = (rpm_freq > 5) ? (float) rpm_freq * rpm_ratio : 0;
           #if DEBUG
           Serial.print ("rpm_freq: ");

@@ -329,9 +329,6 @@ class FrskyD {
     FrskyD (int pinRx, int pinTx);
     SoftwareSerial *mySerial;         //!<SoftwareSerial object
 
-    // attributes
-    bool debug;
-
     // methods
     bool   available ();
 

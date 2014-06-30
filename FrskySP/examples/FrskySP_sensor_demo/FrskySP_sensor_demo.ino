@@ -1,3 +1,13 @@
+/*
+ * Requirements
+ * ------------
+ * - FrskyD library - https://github.com/jcheger/frsky-arduino
+ * 
+ * 
+ * origin: https://github.com/jcheger/frsky-arduino
+ * author: Jean-Christophe Heger <jcheger@ordinoscope.net>
+ */
+
 #include <FrskySP.h>
 #include <SoftwareSerial.h>
 

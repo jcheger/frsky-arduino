@@ -1,12 +1,21 @@
+/*
+ * Requirements
+ * ------------
+ * - FrskyD library - https://github.com/jcheger/frsky-arduino
+ *
+ * 
+ * origin: https://github.com/jcheger/frsky-arduino
+ * author: Jean-Christophe Heger <jcheger@ordinoscope.net>
+ */
+
 #include <FrskyD.h>
 #include <SoftwareSerial.h>
-#include <Streaming.h>
 
 FrskyD FrskyD (10, 11);
 
 void setup() {
   Serial.begin (115200);
-  Serial.println ("BEGIN");
+  Serial.println ("FrskyD sensor demo");
 }
 
 void loop () {

@@ -40,7 +40,11 @@
  * \copyright 2014 - Jean-Christophe Heger - Released under the LGPL 3.0 license.
  * \ChangeLog 2014-06-27 - public devel release
  */
- 
+
+/**
+ * \file FrskyD.cpp
+ */
+  
 #include "Arduino.h"
 #include "FrskyD.h"
 #include "SoftwareSerial.h"
@@ -68,7 +72,7 @@ bool FrskyD::available () {
 
 /**
  * Return a float value, composed by 2 bytes as signed integer and 2 bytes as decimals.
- * Refered as ~before "."~ and ~after "."~ values.
+ * Refered as \a before "." \a and  \a after "." \a values.
  * \param bp value before "."
  * \param ap value after "."
  */
@@ -129,7 +133,8 @@ int FrskyD::decodeCellVoltId (byte *buffer) {
 
 /**
  * \brief Decode the \ref FRSKY_D_GPS_LAT_B packets
- * \param buffer buffer pointer
+ * \param bp value B (before ".")
+ * \param ap value A (after ".")
  * \return latitude
  */
 String FrskyD::decodeGpsLat (int16_t bp, uint16_t ap) {
@@ -146,7 +151,8 @@ String FrskyD::decodeGpsLat (int16_t bp, uint16_t ap) {
 
 /**
  * \brief Decode the \ref FRSKY_D_GPS_LONG_B packets
- * \param buffer buffer pointer
+ * \param bp value B (before ".")
+ * \param ap value A (after ".")
  * \return longitude
  */
 String FrskyD::decodeGpsLong (int16_t bp, uint16_t ap) {
@@ -223,6 +229,12 @@ void FrskyD::sendData (uint8_t id, int16_t val) {
     this->mySerial->write (0x5E);   // End of frame
 }
 
+/**
+ * Send a float as 2 packets (before "." and after ".")
+ * \param idb ID B (before ".")
+ * \param ida ID A (after ".")
+ * \param val value
+ */
 void FrskyD::sendFloat (uint8_t idb, uint8_t ida, float val) {
     int16_t  bp = (int16_t) val;
     uint16_t ap;
