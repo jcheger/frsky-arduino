@@ -12,6 +12,7 @@
 
 #include <Wire.h>
 
+// Use DEBUG 1 to compile the serial debug support
 #define DEBUG 1
 
 #define ASP_V3 0xEA >> 1
@@ -24,6 +25,7 @@ void setup () {
   Serial.begin (115200);
   Serial.println ("DEBUG mode");
   #endif
+
   Wire.begin();
 }
 
@@ -35,15 +37,17 @@ void loop () {
 
   Wire.beginTransmission (ASP_V3);
   Wire.requestFrom (ASP_V3, 2);
-  //delay (50);
+  
   if (Wire.available ()) raw  = Wire.read ();
   #if DEBUG
   else Serial.println ("ERROR on 1st byte");
   #endif
+
   if (Wire.available ()) raw |= (int) Wire.read () << 8;
   #if DEBUG
   else Serial.println ("ERROR on 2nd byte");
   #endif
+
   Wire.endTransmission ();
 
   #if DEBUG

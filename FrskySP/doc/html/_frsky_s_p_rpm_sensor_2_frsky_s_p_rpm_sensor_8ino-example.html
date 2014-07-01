@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>FrskySP: FrskySP_rpm_sensor/FrskySP_rpm_sensor.ino</title>
+<title>FrskyD: FrskySP_rpm_sensor/FrskySP_rpm_sensor.ino</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">FrskySP
+   <div id="projectname">FrskyD
    </div>
-   <div id="projectbrief">Frsky Smart Port protocol library</div>
+   <div id="projectbrief">Frsky D protocol library</div>
   </td>
  </tr>
  </tbody>
@@ -80,66 +80,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">FrskySP_rpm_sensor/FrskySP_rpm_sensor.ino</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment"> * RPM sensor for Frsky Smart Port protocol.</span></div>
-<div class="line"><span class="comment"> *</span></div>
-<div class="line"><span class="comment"> * Requires FrskySP library: https://github.com/jcheger/frsky-arduino</span></div>
-<div class="line"><span class="comment"> * Requires FreqCount library: https://www.pjrc.com/teensy/td_libs_FreqCount.html</span></div>
-<div class="line"><span class="comment"> */</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_frsky_s_p_8h.html">FrskySP.h</a>&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;SoftwareSerial.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;FreqCount.h&gt;</span></div>
-<div class="line"></div>
-<div class="line"><span class="preprocessor">#define DEBUG 0</span></div>
-<div class="line"><span class="preprocessor"></span></div>
-<div class="line"><a name="_a0"></a><a class="code" href="class_frsky_s_p.html">FrskySP</a> <a class="code" href="class_frsky_s_p.html">FrskySP</a> (10, 11);</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">float</span> rpm_ratio = 5.5;</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> setup () {</div>
-<div class="line"><span class="preprocessor">  #if DEBUG</span></div>
-<div class="line"><span class="preprocessor"></span>  Serial.begin (115200);</div>
-<div class="line">  Serial.println (<span class="stringliteral">&quot;DEBUG mode&quot;</span>);</div>
-<div class="line"><span class="preprocessor">  #endif</span></div>
-<div class="line"><span class="preprocessor"></span>  FreqCount.begin (1000);</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> loop () {</div>
-<div class="line">  <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"></div>
-<div class="line">  <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> rpm_freq = 0;</div>
-<div class="line">  uint16_t             rpm_send = 0;</div>
-<div class="line"></div>
-<div class="line">  <span class="keywordflow">if</span> (FreqCount.available()) rpm_freq = FreqCount.read();</div>
-<div class="line"></div>
-<div class="line">  <span class="keywordflow">while</span> (<a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a name="a1"></a><a class="code" href="class_frsky_s_p.html#a0ca01f23021291af7ff6a0afe734698e">available</a> ()) {</div>
-<div class="line"></div>
-<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a name="a2"></a><a class="code" href="class_frsky_s_p.html#aa7aca7f4687a50a677b058163a167e14">read</a> () == 0x7E) {</div>
-<div class="line"></div>
-<div class="line">      <span class="keywordflow">while</span> (!<a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a class="code" href="class_frsky_s_p.html#a0ca01f23021291af7ff6a0afe734698e">available</a> ());  <span class="comment">// wait for the next byte</span></div>
-<div class="line"></div>
-<div class="line">      <span class="keywordflow">switch</span> (<a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a class="code" href="class_frsky_s_p.html#aa7aca7f4687a50a677b058163a167e14">read</a> ()) {</div>
-<div class="line"></div>
-<div class="line">        <span class="keywordflow">case</span> 0xE4:</div>
-<div class="line">          rpm_send = (rpm_freq &gt; 5) ? (<span class="keywordtype">float</span>) rpm_freq * rpm_ratio : 0;</div>
-<div class="line"><span class="preprocessor">          #if DEBUG</span></div>
-<div class="line"><span class="preprocessor"></span>          Serial.print (<span class="stringliteral">&quot;rpm_freq: &quot;</span>);</div>
-<div class="line">          Serial.print (rpm_freq);</div>
-<div class="line">          Serial.print (<span class="stringliteral">&quot;, rpm_send: &quot;</span>);</div>
-<div class="line">          Serial.println (rpm_send);</div>
-<div class="line"><span class="preprocessor">          #endif</span></div>
-<div class="line"><span class="preprocessor"></span>          <a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a name="a3"></a><a class="code" href="class_frsky_s_p.html#a5e64663b2b3a6bf2b0cf0afa0cdf49f4">sendData</a> (<a name="a4"></a><a class="code" href="_frsky_s_p_8h.html#a546c84641a3b3e552433fbedc3e03069">FRSKY_SP_RPM</a>, rpm_send);</div>
-<div class="line">          <span class="keywordflow">break</span>;</div>
-<div class="line">      }</div>
-<div class="line">    }</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-<div class="line"></div>
-</div><!-- fragment --> </div><!-- contents -->
+<div class="fragment"></div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 29 2014 18:56:54 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 1 2014 07:34:05 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

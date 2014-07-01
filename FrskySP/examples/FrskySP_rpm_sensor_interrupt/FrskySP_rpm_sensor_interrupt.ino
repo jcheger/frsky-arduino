@@ -29,7 +29,8 @@
 #include <FrskySP.h>
 #include <SoftwareSerial.h>
 
-#define DEBUG 1
+// Use DEBUG 1 to compile the serial debug support
+#define DEBUG 0
 
 FrskySP FrskySP (10, 11);
 
@@ -43,6 +44,7 @@ void setup () {
   Serial.begin (115200);
   Serial.println ("FrskySP rpm sensor interrupt");
   #endif
+  
   attachInterrupt (0, rpmISR, FALLING);
 }
 
@@ -56,7 +58,7 @@ void loop () {
   rpm_period = (micros () - rpm_micros) / 1000000;
   if (rpm_period >= 1) {
     rpm_freq = rpm_count / rpm_period;
-    // The brushless sensor triggers about 1 pulse per second when no pulse is detected. Erase them.
+    // The brushless sensor triggers 1~5 pulse per second when no RPM is detected. Erase them.
     rpm_send = (rpm_freq > 5) ? (float) rpm_freq * 60 / rpm_ratio : 0;
     rpm_micros  = micros ();
     rpm_count = 0;
@@ -77,6 +79,7 @@ void loop () {
           Serial.print (", rpm_send: ");
           Serial.println (rpm_send);
           #endif
+          
           FrskySP.sendData (FRSKY_SP_RPM, rpm_send);
           break;
       }

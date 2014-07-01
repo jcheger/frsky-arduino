@@ -31,6 +31,7 @@
 #include <SoftwareSerial.h>
 #include <FreqCount.h>
 
+// Use DEBUG 1 to compile the serial debug support
 #define DEBUG 0
 
 FrskySP FrskySP (10, 11);
@@ -61,7 +62,7 @@ void loop () {
 
         case 0xE4:
           rpm_freq = FreqCount.read();
-          // The brushless sensor triggers about 1 pulse per second when no pulse is detected. Erase them.
+          // The brushless sensor triggers 1~5 pulse per second when no RPM is detected. Erase them.
           rpm_send = (rpm_freq > 5) ? (float) rpm_freq * rpm_ratio : 0;
           #if DEBUG
           Serial.print ("rpm_freq: ");

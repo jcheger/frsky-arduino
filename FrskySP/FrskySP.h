@@ -330,5 +330,13 @@ class FrskySP {
  */
 
 /**
- * \example FrskySP_rpm_sensor/FrskySP_rpm_sensor.ino
+ * \example FrskySP_rpm_sensor_freqcount/FrskySP_rpm_sensor_freqcount.ino
+ */
+
+/**
+ * \example FrskySP_rpm_sensor_interrupt/FrskySP_rpm_sensor_interrupt.ino
+ */
+
+/**
+ * \example FrskySP_airspeed_sensor_eagletree/FrskySP_airspeed_sensor_eagletree.ino
  */
