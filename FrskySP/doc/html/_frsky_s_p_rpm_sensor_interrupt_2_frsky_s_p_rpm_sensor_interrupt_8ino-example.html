@@ -112,14 +112,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="preprocessor">#include &lt;SoftwareSerial.h&gt;</span></div>
 <div class="line"></div>
 <div class="line"><span class="comment">// Use DEBUG 1 to compile the serial debug support</span></div>
-<div class="line"><span class="preprocessor">#define DEBUG 0</span></div>
+<div class="line"><span class="preprocessor">#define DEBUG 1</span></div>
 <div class="line"><span class="preprocessor"></span></div>
 <div class="line"><a name="_a0"></a><a class="code" href="class_frsky_s_p.html">FrskySP</a> <a class="code" href="class_frsky_s_p.html">FrskySP</a> (10, 11);</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> rpm_count = 0;</div>
 <div class="line"><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> rpm_micros  = micros ();</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">float</span> rpm_ratio = 7;</div>
+<div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * This is the ratio between the sensor and the final stage.</span></div>
+<div class="line"><span class="comment"> * - if the sensor is measuring the final stage, the ratio is oviously 1.0</span></div>
+<div class="line"><span class="comment"> * - if the ratio is an integer, you may cheat by declaring the ratio as the number of blades in OpenTX (up to 102)</span></div>
+<div class="line"><span class="comment"> * - if the ratio is a float (reducer, helicopter), you will have to modify this value</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"><span class="keywordtype">float</span> rpm_ratio = 1.0;</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> setup () {</div>
 <div class="line"><span class="preprocessor">  #if DEBUG</span></div>
@@ -133,15 +139,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">void</span> loop () {</div>
 <div class="line">  <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
 <div class="line"></div>
-<div class="line">  <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> rpm_freq   = 0;</div>
-<div class="line">  <span class="keywordtype">float</span>                rpm_period = 0;</div>
-<div class="line">  <span class="keyword">static</span> uint16_t      rpm_send   = 0;</div>
+<div class="line">  <span class="keyword">static</span> <span class="keywordtype">float</span>    rpm_freq   = 0;</div>
+<div class="line">  <span class="keywordtype">float</span>           rpm_period = 0;</div>
+<div class="line">  <span class="keyword">static</span> uint32_t rpm_send   = 0;</div>
 <div class="line"></div>
 <div class="line">  rpm_period = (micros () - rpm_micros) / 1000000;</div>
 <div class="line">  <span class="keywordflow">if</span> (rpm_period &gt;= 1) {</div>
 <div class="line">    rpm_freq = rpm_count / rpm_period;</div>
-<div class="line">    <span class="comment">// The brushless sensor triggers 1~5 pulse per second when no RPM is detected. Erase them.</span></div>
-<div class="line">    rpm_send = (rpm_freq &gt; 5) ? (<span class="keywordtype">float</span>) rpm_freq * 60 / rpm_ratio : 0;</div>
+<div class="line">    <span class="comment">// The brushless sensor triggers 1~10 pulses per second when no RPM is detected. Erase them.</span></div>
+<div class="line">    rpm_send = (rpm_freq &gt; 10) ? rpm_freq * 60 / rpm_ratio : 0;</div>
 <div class="line">    rpm_micros  = micros ();</div>
 <div class="line">    rpm_count = 0;</div>
 <div class="line">  }</div>
@@ -158,6 +164,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="preprocessor">          #if DEBUG</span></div>
 <div class="line"><span class="preprocessor"></span>          Serial.print (<span class="stringliteral">&quot;rpm_freq: &quot;</span>);</div>
 <div class="line">          Serial.print (rpm_freq);</div>
+<div class="line">          Serial.print (<span class="stringliteral">&quot;, rpm_out: &quot;</span>);</div>
+<div class="line">          Serial.print (rpm_send);</div>
 <div class="line">          Serial.print (<span class="stringliteral">&quot;, rpm_send: &quot;</span>);</div>
 <div class="line">          Serial.println (rpm_send);</div>
 <div class="line"><span class="preprocessor">          #endif</span></div>
@@ -175,7 +183,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 1 2014 07:54:48 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 1 2014 08:55:06 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

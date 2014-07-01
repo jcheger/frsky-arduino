@@ -30,14 +30,20 @@
 #include <SoftwareSerial.h>
 
 // Use DEBUG 1 to compile the serial debug support
-#define DEBUG 0
+#define DEBUG 1
 
 FrskySP FrskySP (10, 11);
 
 unsigned long rpm_count = 0;
 unsigned long rpm_micros  = micros ();
 
-float rpm_ratio = 7;
+/*
+ * This is the ratio between the sensor and the final stage.
+ * - if the sensor is measuring the final stage, the ratio is oviously 1.0
+ * - if the ratio is an integer, you may cheat by declaring the ratio as the number of blades in OpenTX (up to 102)
+ * - if the ratio is a float (reducer, helicopter), you will have to modify this value
+ */
+float rpm_ratio = 1.0;
 
 void setup () {
   #if DEBUG
@@ -51,15 +57,15 @@ void setup () {
 void loop () {
   static unsigned int i = 0;
 
-  static unsigned long rpm_freq   = 0;
-  float                rpm_period = 0;
-  static uint16_t      rpm_send   = 0;
+  static float    rpm_freq   = 0;
+  float           rpm_period = 0;
+  static uint32_t rpm_send   = 0;
 
   rpm_period = (micros () - rpm_micros) / 1000000;
   if (rpm_period >= 1) {
     rpm_freq = rpm_count / rpm_period;
-    // The brushless sensor triggers 1~5 pulse per second when no RPM is detected. Erase them.
-    rpm_send = (rpm_freq > 5) ? (float) rpm_freq * 60 / rpm_ratio : 0;
+    // The brushless sensor triggers 1~10 pulses per second when no RPM is detected. Erase them.
+    rpm_send = (rpm_freq > 10) ? rpm_freq * 60 / rpm_ratio : 0;
     rpm_micros  = micros ();
     rpm_count = 0;
   }
@@ -76,6 +82,8 @@ void loop () {
           #if DEBUG
           Serial.print ("rpm_freq: ");
           Serial.print (rpm_freq);
+          Serial.print (", rpm_out: ");
+          Serial.print (rpm_send);
           Serial.print (", rpm_send: ");
           Serial.println (rpm_send);
           #endif

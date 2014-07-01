@@ -75,6 +75,9 @@ union FrskySP::packet {
  * \warning after opening the ports with SoftwareSerial, and because of the mux between TX and RX, RX will hang.
  *   The workaround is to revert the TX port as INPUT, and put it back again as OUTPUT at the first available()
  *   call.
+ * \todo allow the use [AltSoftSerial] (http://www.pjrc.com/teensy/td_libs_AltSoftSerial.html) instead - much faster
+ *   than SerialSoftware, and no conflict with [PinChangeInt] (https://code.google.com/p/arduino-pinchangeint/) - see
+ *  [bugs] (https://code.google.com/p/arduino-pinchangeint/wiki/Bugs).
  */
 FrskySP::FrskySP (int pinRx, int pinTx) {
     this->_pinRx = pinRx;

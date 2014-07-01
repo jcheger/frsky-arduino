@@ -176,6 +176,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
   </dd>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>after opening the ports with SoftwareSerial, and because of the mux between TX and RX, RX will hang. The workaround is to revert the TX port as INPUT, and put it back again as OUTPUT at the first <a class="el" href="class_frsky_s_p.html#a0ca01f23021291af7ff6a0afe734698e" title="SoftwareSerial.available() passthrough. ">available()</a> call. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>allow the use <a href="http://www.pjrc.com/teensy/td_libs_AltSoftSerial.html">AltSoftSerial</a> instead - much faster than SerialSoftware, and no conflict with <a href="https://code.google.com/p/arduino-pinchangeint/">PinChangeInt</a> - see <a href="https://code.google.com/p/arduino-pinchangeint/wiki/Bugs">bugs</a>. </dd></dl>
 
 </div>
 </div>
@@ -444,7 +445,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 1 2014 07:54:48 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 1 2014 08:55:06 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
