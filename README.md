@@ -22,4 +22,3 @@ Look at the examples files to see how it works
 * Smart Port
  * [Demo - simulate sensors] (https://github.com/jcheger/frsky-arduino/blob/master/FrskySP/examples/FrskySP_sensor_demo/FrskySP_sensor_demo.ino)
  * [RPM sensor (using EagleTree or other sensors)] (https://github.com/jcheger/frsky-arduino/blob/master/FrskySP/examples/FrskySP_rpm_sensor_freqcount/FrskySP_rpm_sensor_freqcount.ino) - [pinout draft] (https://github.com/jcheger/frsky-arduino/blob/master/FrskySP/examples/FrskySP_rpm_sensor_freqcount/EagleTree_RPM_sensors_bb.png)
-
