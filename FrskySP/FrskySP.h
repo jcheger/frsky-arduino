@@ -5,17 +5,19 @@
 #include "Arduino.h"
 #include "SoftwareSerial.h"
 
+#define FRSKY_ALT_ZERO          0x0000
+
 /**
  * info | comment
  * ---- | -------
  * sensor ID(s)   | FRSKY_SP_ALT ~ FRSKY_SP_ALT+15 (0x0100 ~ 0x010f)
- * physical ID(s) | 3 - GPS / 3 - Altimeter normal precision
+ * physical ID(s) | 0 - Altimeter high precision / 3 - Altimeter normal precision
  * value          | (int) float * 100 [m]
  * 
  * N.B. OpenTX use the first non-zero value and set it as offset reference.
  * 
  * \brief altimeter (barometric altitude)
- * \warning conflicts with GPS (physical ID 3)
+ * \warning normal precision altimeter conflicts with GPS physical ID 3
  */
 #define FRSKY_SP_ALT            0x0100
 
@@ -174,7 +176,9 @@
  * value          | (int) float * 1000 [knots]
  * 
  * \brief GPS speed
- * \bug display error on OpenTX 2.0.3: 100 kmph / 1.852 => 98 kmph
+ * \warning The speed shown on OpenTX has a little drift, because the knots to shown value conversion is simplified.
+ * Allthough, raw knots will be recorded in the logs, and the conversion will be correctly in Companion.
+ * This was discussed in this issue: https://github.com/opentx/opentx/issues/1422
  */
 #define FRSKY_SP_GPS_SPEED      0x0830
 
@@ -231,10 +235,12 @@
  * ---- | -------
  * sensor ID(s)   | FRSKY_SP_AIR_SPEED ~ FRSKY_SP_AIR_SPEED+15 (0x0a00 ~ 0x0a0f)
  * physical ID(s) | ?
- * value          | ?
+ * value          | knots * 10
  * 
  * \brief Air speed sensor
- * \todo 
+ * \warning The speed shown on OpenTX has a little drift, because the knots to shown value conversion is simplified.
+ * Allthough, raw knots will be recorded in the logs, and the conversion will be correctly in Companion.
+ * This was discussed in this issue: https://github.com/opentx/opentx/issues/1422
  */
 #define FRSKY_SP_AIR_SPEED      0x0a00
 

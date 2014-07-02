@@ -81,13 +81,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_bug000001"></a>Member <a class="el" href="_frsky_s_p_8h.html#af053094e5253490e1767d8a65fd45725">FRSKY_SP_GPS_SPEED</a>  </dt>
-<dd>display error on OpenTX 2.0.3: 100 kmph / 1.852 =&gt; 98 kmph </dd>
+<dt><a class="anchor" id="_bug000001"></a>page <a class="el" href="index.html">Main Page</a>  </dt>
+<dd>There is an unsolved bug with one value only, until now. While trying to send airspeed value 100 mph, converted to knots, the receiver will not detect the sensor and not send the value to the remote neither. It works perfectly with 101 or 99 mph, but 100 mph will hang. <div class="fragment"><div class="line"><a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a class="code" href="class_frsky_s_p.html#a5e64663b2b3a6bf2b0cf0afa0cdf49f4">sendData</a> (<a class="code" href="_frsky_s_p_8h.html#a0160facb8c1d27f1201b00a9852dfaf8">FRSKY_SP_AIR_SPEED</a>, 100 * 10 / 1.15077945);    <span class="comment">// packet: 0x10 00 0A 64 03 00 00 7E</span></div>
+</div><!-- fragment --> </dd>
 </dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 1 2014 08:55:06 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 2 2014 19:14:24 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

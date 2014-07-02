@@ -14,6 +14,25 @@
  *   nicer to have a hub than a bus, but the polling of 27 IDs take much time - once a sensor is detected, the receiver
  *   may accelerate the polling, typically for the GPS.
  * 
+ * Receiver behavior
+ * -----------------
+ * The receiver polls in a cyle of 11 ms.
+ * 
+ * The polls contains 2 bytes:
+ * * 0x7E
+ * * CRC + physical ID (1-27)
+ * 
+ * The receiver will poll the IDs in sequence to find which one is present. If only one physical ID is found, the
+ * receiver will alternate the sensor polling and the search (present sensor, next ID to search, present sensor, next ID
+ * and so on). If more sensors are found, the poll sequence returns almost to a search pattern.
+ * 
+ * Sensor behavior
+ * ---------------
+ * The sensor answers to all pools to announce its presence on the physical ID. If no data can be transmitted (no
+ * refresh), the sensor answers by a false CRC empty packet (type 0x00, ID 0x0000, value 0x00000000, CRC 0xFF). This is
+ * the way it works with Frsky's sensors.
+ * 
+ * 
  * Slowness considerations
  * -----------------------
  * Some other projects did use some home made protocol decoder. This library does use SoftwareSerial, interrupted based,
@@ -43,6 +62,13 @@
  * \todo write an example for asynchronous polling
  * \todo write an example to simulate an X8R receiver
  * \ChangeLog 2014-06-27 - public devel release
+ * 
+ * \bug There is an unsolved bug with one value only, until now. While trying to send airspeed value 100 mph, converted
+ * to knots, the receiver will not detect the sensor and not send the value to the remote neither. It works perfectly
+ * with 101 or 99 mph, but 100 mph will hang.
+ * ~~~
+ * FrskySP.sendData (FRSKY_SP_AIR_SPEED, 100 * 10 / 1.15077945);    // packet: 0x10 00 0A 64 03 00 00 7E
+ * ~~~
  */
  
 #include "Arduino.h"
@@ -124,6 +150,7 @@ uint8_t FrskySP::CRC (uint8_t *packet) {
  * \brief Check the CRC of a packet
  * \see https://github.com/opentx/opentx/blob/next/radio/src/telemetry/frsky_sport.cpp
  * \param packet packet pointer
+ * \return true if CRC if false
  */
 bool FrskySP::CRCcheck (uint8_t *packet) {
     short crc = 0;
@@ -205,6 +232,7 @@ void FrskySP::sendData (uint16_t id, int32_t val) {
  * \param type value type
  * \param id sensor ID
  * \param val value
+ * \return return the CRC for control
  */
 void FrskySP::sendData (uint8_t type, uint16_t id, int32_t val) {
     int i = 0;

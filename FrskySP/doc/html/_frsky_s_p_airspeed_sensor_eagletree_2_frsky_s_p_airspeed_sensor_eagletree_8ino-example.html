@@ -82,7 +82,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="fragment"><div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment"> * This code is not ready for production yet !</span></div>
-<div class="line"><span class="comment"> * </span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * Pinout</span></div>
+<div class="line"><span class="comment"> * ------</span></div>
+<div class="line"><span class="comment"> * Red    - VCC (3-16V)</span></div>
+<div class="line"><span class="comment"> * White  - GND</span></div>
+<div class="line"><span class="comment"> * Yellow - SDA</span></div>
+<div class="line"><span class="comment"> * Brown  - SCL</span></div>
+<div class="line"><span class="comment"> *</span></div>
 <div class="line"><span class="comment"> * Documentation</span></div>
 <div class="line"><span class="comment"> * -------------</span></div>
 <div class="line"><span class="comment"> * http://www.eagletreesystems.com/Manuals/microsensor-i2c.pdf</span></div>
@@ -92,58 +99,89 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="comment"> * author: Jean-Christophe Heger &lt;jcheger@ordinoscope.net&gt;</span></div>
 <div class="line"><span class="comment"> */</span></div>
 <div class="line"></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_frsky_s_p_8h.html">FrskySP.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;SoftwareSerial.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;Wire.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Streaming.h&gt;</span></div>
 <div class="line"></div>
-<div class="line"><span class="comment">// Use DEBUG 1 to compile the serial debug support</span></div>
-<div class="line"><span class="preprocessor">#define DEBUG 1</span></div>
-<div class="line"><span class="preprocessor"></span></div>
 <div class="line"><span class="preprocessor">#define ASP_V3 0xEA &gt;&gt; 1</span></div>
-<div class="line"><span class="preprocessor"></span><span class="preprocessor">#define ALT_V3 0xE8 &gt;&gt; 1</span></div>
-<div class="line"><span class="preprocessor"></span><span class="preprocessor">#define ALT_V4 0xEC &gt;&gt; 1  // barometric + 3000 decimeter offset</span></div>
-<div class="line"><span class="preprocessor"></span><span class="preprocessor">#define GFORCE 0xA8 &gt;&gt; 1</span></div>
 <div class="line"><span class="preprocessor"></span></div>
+<div class="line"><a name="_a0"></a><a class="code" href="class_frsky_s_p.html">FrskySP</a> <a class="code" href="class_frsky_s_p.html">FrskySP</a> (10, 11);</div>
+<div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> setup () {</div>
-<div class="line"><span class="preprocessor">  #if DEBUG</span></div>
-<div class="line"><span class="preprocessor"></span>  Serial.begin (115200);</div>
-<div class="line">  Serial.println (<span class="stringliteral">&quot;DEBUG mode&quot;</span>);</div>
-<div class="line"><span class="preprocessor">  #endif</span></div>
-<div class="line"><span class="preprocessor"></span></div>
+<div class="line">  Serial.begin (115200);</div>
+<div class="line">  Serial.println (<span class="stringliteral">&quot;BEGIN&quot;</span>);</div>
+<div class="line"></div>
 <div class="line">  Wire.begin();</div>
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> loop () {</div>
-<div class="line">  <span class="keywordtype">int</span> raw;</div>
+<div class="line">  <span class="keyword">static</span> <span class="keywordtype">float</span> mph = 0;</div>
+<div class="line">  <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> sensor_millis = millis ();</div>
+<div class="line"></div>
+<div class="line">  <span class="keywordflow">if</span> ((millis() - sensor_millis) &gt;= 100) {</div>
+<div class="line">    mph = read_sensor (ASP_V3);  <span class="comment">// In third party I2C mode, the airspeed sensor returns mph</span></div>
+<div class="line">    sensor_millis = millis ();</div>
+<div class="line">    Serial.println (mph);</div>
+<div class="line">  }</div>
+<div class="line"></div>
+<div class="line">  <span class="keywordflow">while</span> (<a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a name="a1"></a><a class="code" href="class_frsky_s_p.html#a0ca01f23021291af7ff6a0afe734698e">available</a> ()) {</div>
+<div class="line"></div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a name="a2"></a><a class="code" href="class_frsky_s_p.html#aa7aca7f4687a50a677b058163a167e14">read</a> () == 0x7E) {</div>
+<div class="line"></div>
+<div class="line">      <span class="keywordflow">while</span> (!<a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a class="code" href="class_frsky_s_p.html#a0ca01f23021291af7ff6a0afe734698e">available</a> ());  <span class="comment">// wait for the next byte</span></div>
+<div class="line"></div>
+<div class="line">      <span class="keywordflow">switch</span> (<a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a class="code" href="class_frsky_s_p.html#aa7aca7f4687a50a677b058163a167e14">read</a> ()) {</div>
+<div class="line"></div>
+<div class="line">        <span class="keywordflow">case</span> 0x67:  <span class="comment">// Physical ID 7</span></div>
+<div class="line">          <span class="comment">/*</span></div>
+<div class="line"><span class="comment">           * The is a little drift on OpenTX, that was discussed here:</span></div>
+<div class="line"><span class="comment">           * https://github.com/opentx/opentx/issues/1422</span></div>
+<div class="line"><span class="comment">           *</span></div>
+<div class="line"><span class="comment">           * Although, the value will be recored correctly, as so in Companion.</span></div>
+<div class="line"><span class="comment">           * Don&#39;t try to resolve the shown value on the transmitter if you want</span></div>
+<div class="line"><span class="comment">           * to rely on the logged values.</span></div>
+<div class="line"><span class="comment">           *</span></div>
+<div class="line"><span class="comment">           * real conversion          | value shown OpenTX </span></div>
+<div class="line"><span class="comment">           * -------------------------|----------------------</span></div>
+<div class="line"><span class="comment">           * 1 mph = 1.15077945 knots | 31 / 27 = 1.148148148</span></div>
+<div class="line"><span class="comment">           * 1 kph = 1.852 knots      | 50 / 27 = 1.851851852</span></div>
+<div class="line"><span class="comment">           * </span></div>
+<div class="line"><span class="comment">           * due to an conversion bug in OpenTX, it must be multipled by 0.86916</span></div>
+<div class="line"><span class="comment">           */</span></div>
+<div class="line">          <a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a name="a3"></a><a class="code" href="class_frsky_s_p.html#a5e64663b2b3a6bf2b0cf0afa0cdf49f4">sendData</a> (<a name="a4"></a><a class="code" href="_frsky_s_p_8h.html#a0160facb8c1d27f1201b00a9852dfaf8">FRSKY_SP_AIR_SPEED</a>, mph * 10 / 1.15077945 + 0.5);</div>
+<div class="line">          <span class="keywordflow">break</span>;</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Airspeed sensor: 756 us</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line">int16_t read_sensor (int16_t <span class="keywordtype">id</span>) {</div>
+<div class="line">  int16_t raw;</div>
+<div class="line">  </div>
 <div class="line">  Wire.beginTransmission (ASP_V3);</div>
 <div class="line">  Wire.write (0x07);</div>
 <div class="line">  Wire.endTransmission ();</div>
 <div class="line"></div>
 <div class="line">  Wire.beginTransmission (ASP_V3);</div>
 <div class="line">  Wire.requestFrom (ASP_V3, 2);</div>
-<div class="line">  </div>
 <div class="line">  <span class="keywordflow">if</span> (Wire.available ()) raw  = Wire.read ();</div>
-<div class="line"><span class="preprocessor">  #if DEBUG</span></div>
-<div class="line"><span class="preprocessor"></span>  <span class="keywordflow">else</span> Serial.println (<span class="stringliteral">&quot;ERROR on 1st byte&quot;</span>);</div>
-<div class="line"><span class="preprocessor">  #endif</span></div>
-<div class="line"><span class="preprocessor"></span></div>
+<div class="line">  <span class="keywordflow">else</span>                   Serial.println (<span class="stringliteral">&quot;ERROR on byte 1&quot;</span>);</div>
+<div class="line">   </div>
 <div class="line">  <span class="keywordflow">if</span> (Wire.available ()) raw |= (<span class="keywordtype">int</span>) Wire.read () &lt;&lt; 8;</div>
-<div class="line"><span class="preprocessor">  #if DEBUG</span></div>
-<div class="line"><span class="preprocessor"></span>  <span class="keywordflow">else</span> Serial.println (<span class="stringliteral">&quot;ERROR on 2nd byte&quot;</span>);</div>
-<div class="line"><span class="preprocessor">  #endif</span></div>
-<div class="line"><span class="preprocessor"></span></div>
+<div class="line">  <span class="keywordflow">else</span>                   Serial.println (<span class="stringliteral">&quot;ERROR on byte 2&quot;</span>);</div>
 <div class="line">  Wire.endTransmission ();</div>
 <div class="line"></div>
-<div class="line"><span class="preprocessor">  #if DEBUG</span></div>
-<div class="line"><span class="preprocessor"></span>  Serial.print (raw, HEX);</div>
-<div class="line">  Serial.print (<span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line">  Serial.println (raw, DEC);</div>
-<div class="line"><span class="preprocessor">  #endif</span></div>
-<div class="line"><span class="preprocessor"></span>  </div>
-<div class="line">  delay(200);</div>
+<div class="line">  <span class="keywordflow">return</span> raw;</div>
 <div class="line">}</div>
+<div class="line"></div>
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 1 2014 08:55:06 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 2 2014 19:14:24 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

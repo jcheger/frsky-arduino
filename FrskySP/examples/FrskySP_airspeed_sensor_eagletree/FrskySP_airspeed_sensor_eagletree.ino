@@ -1,6 +1,13 @@
 /*
  * This code is not ready for production yet !
- * 
+ *
+ * Pinout
+ * ------
+ * Red    - VCC (3-16V)
+ * White  - GND
+ * Yellow - SDA
+ * Brown  - SCL
+ *
  * Documentation
  * -------------
  * http://www.eagletreesystems.com/Manuals/microsensor-i2c.pdf
@@ -10,51 +17,82 @@
  * author: Jean-Christophe Heger <jcheger@ordinoscope.net>
  */
 
+#include <FrskySP.h>
+#include <SoftwareSerial.h>
 #include <Wire.h>
-
-// Use DEBUG 1 to compile the serial debug support
-#define DEBUG 1
+#include <Streaming.h>
 
 #define ASP_V3 0xEA >> 1
-#define ALT_V3 0xE8 >> 1
-#define ALT_V4 0xEC >> 1  // barometric + 3000 decimeter offset
-#define GFORCE 0xA8 >> 1
+
+FrskySP FrskySP (10, 11);
 
 void setup () {
-  #if DEBUG
   Serial.begin (115200);
-  Serial.println ("DEBUG mode");
-  #endif
+  Serial.println ("BEGIN");
 
   Wire.begin();
 }
 
 void loop () {
-  int raw;
+  static float mph = 0;
+  static unsigned long sensor_millis = millis ();
+
+  if ((millis() - sensor_millis) >= 100) {
+    mph = read_sensor (ASP_V3);  // In third party I2C mode, the airspeed sensor returns mph
+    sensor_millis = millis ();
+    Serial.println (mph);
+  }
+
+  while (FrskySP.available ()) {
+
+    if (FrskySP.read () == 0x7E) {
+
+      while (!FrskySP.available ());  // wait for the next byte
+
+      switch (FrskySP.read ()) {
+
+        case 0x67:  // Physical ID 7
+          /*
+           * The is a little drift on OpenTX, that was discussed here:
+           * https://github.com/opentx/opentx/issues/1422
+           *
+           * Although, the value will be recored correctly, as so in Companion.
+           * Don't try to resolve the shown value on the transmitter if you want
+           * to rely on the logged values.
+           *
+           * real conversion          | value shown OpenTX 
+           * -------------------------|----------------------
+           * 1 mph = 1.15077945 knots | 31 / 27 = 1.148148148
+           * 1 kph = 1.852 knots      | 50 / 27 = 1.851851852
+           * 
+           * due to an conversion bug in OpenTX, it must be multipled by 0.86916
+           */
+          FrskySP.sendData (FRSKY_SP_AIR_SPEED, mph * 10 / 1.15077945 + 0.5);
+          break;
+      }
+    }
+  }
+}
+
+/*
+ * Airspeed sensor: 756 us
+ */
+int16_t read_sensor (int16_t id) {
+  int16_t raw;
+  
   Wire.beginTransmission (ASP_V3);
   Wire.write (0x07);
   Wire.endTransmission ();
 
   Wire.beginTransmission (ASP_V3);
   Wire.requestFrom (ASP_V3, 2);
-  
   if (Wire.available ()) raw  = Wire.read ();
-  #if DEBUG
-  else Serial.println ("ERROR on 1st byte");
-  #endif
-
+  else                   Serial.println ("ERROR on byte 1");
+   
   if (Wire.available ()) raw |= (int) Wire.read () << 8;
-  #if DEBUG
-  else Serial.println ("ERROR on 2nd byte");
-  #endif
-
+  else                   Serial.println ("ERROR on byte 2");
   Wire.endTransmission ();
 
-  #if DEBUG
-  Serial.print (raw, HEX);
-  Serial.print (" ");
-  Serial.println (raw, DEC);
-  #endif
-  
-  delay(200);
+  return raw;
 }
+

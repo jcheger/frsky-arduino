@@ -106,7 +106,9 @@
  * * 1 mile = 1.151 knots
  * 
  * \brief GPS speed
- * \bug display error on OpenTX 2.0.3: 100 kmph / 1.852 => 98 kmph
+ * \warning The speed shown on OpenTX has a little drift, because the knots to shown value conversion is simplified.
+ * Allthough, raw knots will be recorded in the logs, and the conversion will be correctly in Companion.
+ * This was discussed in this issue: https://github.com/opentx/opentx/issues/1422
  */
 #define FRSKY_D_GPS_SPEED_B  0x11    // GPS-01
 
