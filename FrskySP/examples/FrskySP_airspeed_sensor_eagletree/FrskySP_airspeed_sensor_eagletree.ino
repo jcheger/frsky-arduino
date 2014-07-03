@@ -62,10 +62,8 @@ void loop () {
            *
            * real conversion          | value shown OpenTX 
            * -------------------------|----------------------
-           * 1 mph = 1.15077945 knots | 31 / 27 = 1.148148148
+           * 1 mph = 1.15077945 knots | 23 / 20 = 1.15 (up to 2.0.5: 31 / 27 = 1.148148148)
            * 1 kph = 1.852 knots      | 50 / 27 = 1.851851852
-           * 
-           * due to an conversion bug in OpenTX, it must be multipled by 0.86916
            */
           FrskySP.sendData (FRSKY_SP_AIR_SPEED, mph * 10 / 1.15077945 + 0.5);
           break;
@@ -75,7 +73,7 @@ void loop () {
 }
 
 /*
- * Airspeed sensor: 756 us
+ * Airspeed sensor answers in 756 us
  */
 int16_t read_sensor (int16_t id) {
   int16_t raw;

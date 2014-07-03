@@ -324,6 +324,12 @@ Macros</h2></td></tr>
 <tr>
 <td>cell ID mask </td><td>0xf000 &gt;&gt; 4 </td></tr>
 </table>
+<p>Some methods a specific to this sensor:</p>
+<ul>
+<li><a class="el" href="class_frsky_d.html#a3e7330b83abbb3741521d157ed417d72" title="Decode the cell voltage of the FRSKY_D_CELL_VOLT packets. ">FrskyD::decodeCellVolt</a></li>
+<li><a class="el" href="class_frsky_d.html#a466570e29461de060c53a9d7a8d65a63" title="Decode cell ID of the FRSKY_D_CELL_VOLT packets. ">FrskyD::decodeCellVoltId</a></li>
+<li><a class="el" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00" title="Send lipo cell voltage (specific to FRSKY_D_CELL_VOLT) ">FrskyD::sendCellVolt</a> </li>
+</ul>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a10">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
@@ -683,7 +689,7 @@ Macros</h2></td></tr>
 <li>1 km = 1.852 knots</li>
 <li>1 mile = 1.151 knots</li>
 </ul>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd>display error on OpenTX 2.0.3: 100 kmph / 1.852 =&gt; 98 kmph </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The speed shown on OpenTX has a little drift, because the knots to shown value conversion is simplified. Allthough, raw knots will be recorded in the logs, and the conversion will be correctly in Companion. This was discussed in this issue: <a href="https://github.com/opentx/opentx/issues/1422">https://github.com/opentx/opentx/issues/1422</a> </dd></dl>
 <dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_d_sensor_demo_2_frsky_d_sensor_demo_8ino-example.html#a21">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</a>, and <a class="el" href="_frsky_d_sniffer_2_frsky_d_sniffer_8ino-example.html#a30">FrskyD_sniffer/FrskyD_sniffer.ino</a>.</dd>
 </dl>
 </div>
@@ -865,7 +871,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 30 2014 14:52:41 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 3 2014 07:38:24 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>FrskyD: FrskySP_airspeed_sensor_eagletree/FrskySP_airspeed_sensor_eagletree.ino</title>
+<title>FrskySP: FrskySP_airspeed_sensor_eagletree/FrskySP_airspeed_sensor_eagletree.ino</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">FrskyD
+   <div id="projectname">FrskySP
    </div>
-   <div id="projectbrief">Frsky D protocol library</div>
+   <div id="projectbrief">Frsky Smart Port protocol library</div>
   </td>
  </tr>
  </tbody>
@@ -144,10 +144,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="comment">           *</span></div>
 <div class="line"><span class="comment">           * real conversion          | value shown OpenTX </span></div>
 <div class="line"><span class="comment">           * -------------------------|----------------------</span></div>
-<div class="line"><span class="comment">           * 1 mph = 1.15077945 knots | 31 / 27 = 1.148148148</span></div>
+<div class="line"><span class="comment">           * 1 mph = 1.15077945 knots | 23 / 20 = 1.15 (up to 2.0.5: 31 / 27 = 1.148148148)</span></div>
 <div class="line"><span class="comment">           * 1 kph = 1.852 knots      | 50 / 27 = 1.851851852</span></div>
-<div class="line"><span class="comment">           * </span></div>
-<div class="line"><span class="comment">           * due to an conversion bug in OpenTX, it must be multipled by 0.86916</span></div>
 <div class="line"><span class="comment">           */</span></div>
 <div class="line">          <a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a name="a3"></a><a class="code" href="class_frsky_s_p.html#a5e64663b2b3a6bf2b0cf0afa0cdf49f4">sendData</a> (<a name="a4"></a><a class="code" href="_frsky_s_p_8h.html#a0160facb8c1d27f1201b00a9852dfaf8">FRSKY_SP_AIR_SPEED</a>, mph * 10 / 1.15077945 + 0.5);</div>
 <div class="line">          <span class="keywordflow">break</span>;</div>
@@ -157,7 +155,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment"> * Airspeed sensor: 756 us</span></div>
+<div class="line"><span class="comment"> * Airspeed sensor answers in 756 us</span></div>
 <div class="line"><span class="comment"> */</span></div>
 <div class="line">int16_t read_sensor (int16_t <span class="keywordtype">id</span>) {</div>
 <div class="line">  int16_t raw;</div>
@@ -181,7 +179,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 2 2014 19:14:24 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 3 2014 09:20:57 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

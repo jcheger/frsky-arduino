@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>FrskyD: Main Page</title>
+<title>FrskyD: examples/FrskyD_sensor_demo Directory Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,7 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -60,7 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -75,54 +74,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="dir_b828063d86b67ee3739c756ea9c20333.html">FrskyD_sensor_demo</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">FrskyD Documentation</div>  </div>
+<div class="title">FrskyD_sensor_demo Directory Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Arduino library for Frsky D protocol.</p>
-<p>This library is not designed to decode data on the transmitter, but on the receiver side. OpenTX makes the rest of the job on the transmitter.</p>
-<p>This development is completely independent of Frsky or OpenTX.</p>
-<h2>What to know about D protocol </h2>
-<ul>
-<li>use an inverted serial communication at 9600bds</li>
-<li>compared to SP, the D protocol has no slowness issue (no time based polling) - then sensor can take as much time it needs to send data. Anyhow, don't send too much data without delay. It could saturate the receiver buffer and corrupt data.</li>
-<li>in Frsky's white paper, packets are supposed to be sent as frames (sets of data), on a period base</li>
-<li>the frames are used by the D hub, be are not necessary to OpenTX - only one value can be sent at a time</li>
-<li>by the way, the VFAS sensor does not use frames, but send individual packets for <a class="el" href="_frsky_d_8h.html#add38cdec5e8b9b4c6309c7a5f8ad5c75">FRSKY_D_CURRENT</a>, <a class="el" href="_frsky_d_8h.html#aabe1f973b1a62f335708382262e698c1">FRSKY_D_VOLTAGE_B</a> and <a class="el" href="_frsky_d_8h.html#a200f559eda0eb5d73e46d059a5e1ae2d">FRSKY_D_VOLTAGE_A</a>.</li>
-</ul>
-<p>Here is what Frsky planned in a first time: </p>
-<table class="doxtable">
-<tr>
-<th>frame </th><th>period </th><th>sensors  </th></tr>
-<tr>
-<td>1 </td><td>200ms </td><td>accelerometers, altitude, temperature, voltage, current, rpm </td></tr>
-<tr>
-<td>2 </td><td>1s </td><td>GPS (except date and time), fuel level </td></tr>
-<tr>
-<td>3 </td><td>5s </td><td>GPS date and time </td></tr>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+Files</h2></td></tr>
+<tr class="memitem:_frsky_d__sensor__demo_8ino"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><b>FrskyD_sensor_demo.ino</b></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2>Connection draft </h2>
-<div class="image">
-<img src="D_ports_bb.png" alt="D_ports_bb.png"/>
-</div>
-<ul>
-<li>pull down resistor on RX line (100k)</li>
-<li>pull down resistor on TX line (100k)</li>
-</ul>
-<dl class="section version"><dt>Version</dt><dd>devel </dd></dl>
-<dl class="section author"><dt>Author</dt><dd>Jean-Christophe Heger </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a href="https://github.com/jcheger/frsky-arduino/">https://github.com/jcheger/frsky-arduino/</a> - source of this library </dd>
-<dd>
-<a href="http://www.frsky-rc.com/">http://www.frsky-rc.com/</a> </dd>
-<dd>
-<a href="http://www.open-tx.org/">http://www.open-tx.org/</a> </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>2014 - Jean-Christophe Heger - Released under the LGPL 3.0 license. </dd></dl>
-<dl class="ChangeLogs"><dt><b><a class="el" href="_change_logs.html#_ChangeLogs000001">ChangeLog:</a></b></dt><dd>2014-06-27 - public devel release </dd></dl>
-</div></div><!-- contents -->
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 3 2014 07:38:24 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 3 2014 07:29:53 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

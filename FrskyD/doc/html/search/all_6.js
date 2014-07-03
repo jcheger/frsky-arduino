@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['myserial',['mySerial',['../class_frsky_d.html#a503ba13043eda599b8a446bfc6eef71d',1,'FrskyD']]]
+  ['read',['read',['../class_frsky_d.html#a100d46dfba5d0e95809e6bf16f339a4b',1,'FrskyD']]]
 ];

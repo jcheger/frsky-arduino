@@ -7,48 +7,71 @@
  * This development is completely independent of Frsky or OpenTX.
  * 
  * What to know about Smart Port
- * -----------------------------
+ * =============================
  * * use an inverted serial communication at 57600bds muxed on one port
  * * the receiver polls 27 physical sensors periodically
  * * compare to D, the SP protocol seems much faster, but maybe not - it's easier to use for data encoding, and is
- *   nicer to have a hub than a bus, but the polling of 27 IDs take much time - once a sensor is detected, the receiver
- *   may accelerate the polling, typically for the GPS.
+ *   nicer to have a bus than a hub, but the polling of 27 IDs takes time (i.e. if a sensor has many values, it can
+ *   send only one at a time, ex. GPS).
  * 
  * Receiver behavior
  * -----------------
- * The receiver polls in a cyle of 11 ms.
+ * The receiver polls in a cyle of (a bit more of) 11 ms.
  * 
- * The polls contains 2 bytes:
- * * 0x7E
- * * CRC + physical ID (1-27)
+ * byte | description
+ * -----|------------
+ * 0x7E | poll header
+ * ID   | physical ID (1-27) computed with a CRC (see \ref FrskySP_sensor_demo/FrskySP_sensor_demo.ino for the full list of polled IDs)
  * 
- * The receiver will poll the IDs in sequence to find which one is present. If only one physical ID is found, the
- * receiver will alternate the sensor polling and the search (present sensor, next ID to search, present sensor, next ID
- * and so on). If more sensors are found, the poll sequence returns almost to a search pattern.
+ * * The receiver will poll the IDs in sequence to find which one is present.
+ * * If only one physical ID is found, the receiver will alternate the sensor polling and the search (present sensor,
+ *   next ID to search, present sensor, next ID and so on).
+ * * If more sensors are found, the poll sequence returns almost to a normal search pattern.
  * 
  * Sensor behavior
  * ---------------
- * The sensor answers to all pools to announce its presence on the physical ID. If no data can be transmitted (no
- * refresh), the sensor answers by a false CRC empty packet (type 0x00, ID 0x0000, value 0x00000000, CRC 0xFF). This is
- * the way it works with Frsky's sensors.
+ * Genuine Frsky sensors: the sensor answers to every pool on its physical ID to announce its presence. If no data can
+ * be transmitted (no refresh), the sensor answers by an empty packet and a false CRC (type 0x00, ID 0x0000,
+ * value 0x00000000, CRC 0xFF).
  * 
+ * byte(s) | descrption
+ * --------|-----------
+ * 1       | type (only 0x10 at now)
+ * 2       | sensor logical ID (see \ref FrskySP.h for the full list of IDs)
+ * 4       | value
+ * 1       | CRC
  * 
  * Slowness considerations
- * -----------------------
- * Some other projects did use some home made protocol decoder. This library does use SoftwareSerial, interrupted based,
- *  included in Arduino 1.0+. Until now, no slowness issues were observed. Although, you must be careful
- *  around those issues:
- * * only one answer per poll cycle (the [FrskySP_sensor_demo.ino](\ref FrskySP_sensor_demo/FrskySP_sensor_demo.ino) example shows how to
- *  handle multiple answers for one physical ID)
- * * the answer must be fast - some sensor polling can take much time (i.e. analog reading)
- * * only one sensor per physical ID (i.e. GPS a normal precision altimeter share the physical ID 3)
+ * =======================
+ * There are 2 recurrent discussions on Internet, that are related to what is used in this code and examples:
+ * * SoftwareSerial is too slow - no, it is not (at least in Arduino 1.0+). The answers from the Arduino are even faster
+ *   than the genuine Frksy sensors. Allthough, the annoying point is the conflict with the PinChangeInt library.
+ * * Floating point computing is slow - yes and no. The slowness is reversed if the input or the output of the formula
+ *   is a float. Example:
+ * ~~~~~
+ * int b = (int) a / 10;     // faster (a & b are integers)
+ * int b = (int) a * 0.1;    // slower
+ * 
+ * float b = (int) a / 10;   // slower (b is a float)
+ * float b = (int) a * 0.1;  // faster
+ * ~~~~~
+ * A float computing can take up to 40us. Unless you make a lot of them, there is plenty of time to answer within the
+ * poll cycle (11 ms). Allthough, OpenTX has many computing to do and has no time to lose. There is a little drift for
+ * the GPS and airspeed values shown on the remote control.
+ * 
+ * Although, you must be careful around those issues:
+ * * only one sensor per physical ID (ex. GPS and normal precision altimeter share the same physical ID 3)
+ * * only one answer per poll cycle (the [FrskySP_sensor_demo.ino](\ref FrskySP_sensor_demo/FrskySP_sensor_demo.ino)
+ *   example shows how to handle multiple answers for one physical ID)
+ * * take care about the polling time of the sensor. For instance, polling a DS18x20 temperature sensor takes up to
+ *   750ms. The polling must be asynchronous to be answered within the cycle of 11ms.
  * 
  * Connection draft
- * ----------------
+ * ================
  * \image html Smart_Port_bb.png
  * 
  * * pull down resistor on TX line (100k)
- * * diode between TX and RX (i.e. 1N4108)
+ * * diode between TX and RX (ex. 1N4108)
  * 
  * On this circuit, RX will hang after serial begin. There is a workaround that inverts the TX pinMode to INPUT and back
  *  to OUTPUT.
@@ -59,7 +82,6 @@
  * \see http://www.frsky-rc.com/
  * \see http://www.open-tx.org/
  * \copyright 2014 - Jean-Christophe Heger - Released under the LGPL 3.0 license.
- * \todo write an example for asynchronous polling
  * \todo write an example to simulate an X8R receiver
  * \ChangeLog 2014-06-27 - public devel release
  * 

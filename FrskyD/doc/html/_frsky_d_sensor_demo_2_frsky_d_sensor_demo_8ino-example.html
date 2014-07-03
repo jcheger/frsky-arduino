@@ -80,16 +80,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">FrskyD_sensor_demo/FrskyD_sensor_demo.ino</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"></div>
+<div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Requirements</span></div>
+<div class="line"><span class="comment"> * ------------</span></div>
+<div class="line"><span class="comment"> * - FrskyD library - https://github.com/jcheger/frsky-arduino</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * </span></div>
+<div class="line"><span class="comment"> * origin: https://github.com/jcheger/frsky-arduino</span></div>
+<div class="line"><span class="comment"> * author: Jean-Christophe Heger &lt;jcheger@ordinoscope.net&gt;</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_frsky_d_8h.html">FrskyD.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;SoftwareSerial.h&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;Streaming.h&gt;</span></div>
 <div class="line"></div>
 <div class="line"><a name="_a0"></a><a class="code" href="class_frsky_d.html">FrskyD</a> <a class="code" href="class_frsky_d.html">FrskyD</a> (10, 11);</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
 <div class="line">  Serial.begin (115200);</div>
-<div class="line">  Serial.println (<span class="stringliteral">&quot;BEGIN&quot;</span>);</div>
+<div class="line">  Serial.println (<span class="stringliteral">&quot;FrskyD sensor demo&quot;</span>);</div>
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> loop () {</div>
@@ -158,7 +166,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 30 2014 14:52:41 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 3 2014 07:38:24 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

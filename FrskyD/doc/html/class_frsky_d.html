@@ -109,10 +109,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af1b02d771c5e4b857f8f35af0946e2b9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#af1b02d771c5e4b857f8f35af0946e2b9">decode1Int</a> (byte *buffer)</td></tr>
 <tr class="separator:af1b02d771c5e4b857f8f35af0946e2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e7330b83abbb3741521d157ed417d72"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a3e7330b83abbb3741521d157ed417d72">decodeCellVolt</a> (byte *buffer)</td></tr>
-<tr class="memdesc:a3e7330b83abbb3741521d157ed417d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode the cell voltage of the <a class="el" href="_frsky_d_8h.html#aabe1f973b1a62f335708382262e698c1">FRSKY_D_VOLTAGE_B</a> packets.  <a href="#a3e7330b83abbb3741521d157ed417d72">More...</a><br/></td></tr>
+<tr class="memdesc:a3e7330b83abbb3741521d157ed417d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode the cell voltage of the <a class="el" href="_frsky_d_8h.html#aacfc5c73d70358f8e8f307eb95f111f8">FRSKY_D_CELL_VOLT</a> packets.  <a href="#a3e7330b83abbb3741521d157ed417d72">More...</a><br/></td></tr>
 <tr class="separator:a3e7330b83abbb3741521d157ed417d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a466570e29461de060c53a9d7a8d65a63"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a466570e29461de060c53a9d7a8d65a63">decodeCellVoltId</a> (byte *buffer)</td></tr>
-<tr class="memdesc:a466570e29461de060c53a9d7a8d65a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode cell ID of the <a class="el" href="_frsky_d_8h.html#aabe1f973b1a62f335708382262e698c1">FRSKY_D_VOLTAGE_B</a> packets.  <a href="#a466570e29461de060c53a9d7a8d65a63">More...</a><br/></td></tr>
+<tr class="memdesc:a466570e29461de060c53a9d7a8d65a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode cell ID of the <a class="el" href="_frsky_d_8h.html#aacfc5c73d70358f8e8f307eb95f111f8">FRSKY_D_CELL_VOLT</a> packets.  <a href="#a466570e29461de060c53a9d7a8d65a63">More...</a><br/></td></tr>
 <tr class="separator:a466570e29461de060c53a9d7a8d65a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ee8d182da892de20c192dc93752cb7e"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a7ee8d182da892de20c192dc93752cb7e">decodeGpsLat</a> (int16_t bp, uint16_t ap)</td></tr>
 <tr class="memdesc:a7ee8d182da892de20c192dc93752cb7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode the <a class="el" href="_frsky_d_8h.html#ae5470b3b6b53df0e6154b77594e56ccd">FRSKY_D_GPS_LAT_B</a> packets.  <a href="#a7ee8d182da892de20c192dc93752cb7e">More...</a><br/></td></tr>
@@ -127,7 +127,7 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a100d46dfba5d0e95809e6bf16f339a4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">SoftwareSerial.read() passthrough. <br/></td></tr>
 <tr class="separator:a100d46dfba5d0e95809e6bf16f339a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a929c9304aacc6aceeed6c5a90a9efc00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a929c9304aacc6aceeed6c5a90a9efc00">sendCellVolt</a> (uint8_t id, float val)</td></tr>
-<tr class="memdesc:a929c9304aacc6aceeed6c5a90a9efc00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send lipo cell voltage.  <a href="#a929c9304aacc6aceeed6c5a90a9efc00">More...</a><br/></td></tr>
+<tr class="memdesc:a929c9304aacc6aceeed6c5a90a9efc00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send lipo cell voltage (specific to <a class="el" href="_frsky_d_8h.html#aacfc5c73d70358f8e8f307eb95f111f8">FRSKY_D_CELL_VOLT</a>)  <a href="#a929c9304aacc6aceeed6c5a90a9efc00">More...</a><br/></td></tr>
 <tr class="separator:a929c9304aacc6aceeed6c5a90a9efc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a755622d280a41aafcc6de3dcc386c3a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (uint8_t id, int16_t val)</td></tr>
 <tr class="separator:a755622d280a41aafcc6de3dcc386c3a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -296,7 +296,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
       </table>
 </div><div class="memdoc">
 
-<p>Decode the cell voltage of the <a class="el" href="_frsky_d_8h.html#aabe1f973b1a62f335708382262e698c1">FRSKY_D_VOLTAGE_B</a> packets. </p>
+<p>Decode the cell voltage of the <a class="el" href="_frsky_d_8h.html#aacfc5c73d70358f8e8f307eb95f111f8">FRSKY_D_CELL_VOLT</a> packets. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buffer</td><td>buffer pointer </td></tr>
@@ -322,7 +322,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
       </table>
 </div><div class="memdoc">
 
-<p>Decode cell ID of the <a class="el" href="_frsky_d_8h.html#aabe1f973b1a62f335708382262e698c1">FRSKY_D_VOLTAGE_B</a> packets. </p>
+<p>Decode cell ID of the <a class="el" href="_frsky_d_8h.html#aacfc5c73d70358f8e8f307eb95f111f8">FRSKY_D_CELL_VOLT</a> packets. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buffer</td><td>buffer pointer </td></tr>
@@ -469,7 +469,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
       </table>
 </div><div class="memdoc">
 
-<p>Send lipo cell voltage. </p>
+<p>Send lipo cell voltage (specific to <a class="el" href="_frsky_d_8h.html#aacfc5c73d70358f8e8f307eb95f111f8">FRSKY_D_CELL_VOLT</a>) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>cell ID </td></tr>
@@ -576,7 +576,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 30 2014 14:52:41 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 3 2014 07:38:24 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

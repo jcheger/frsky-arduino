@@ -74,6 +74,11 @@
  * voltage mask | 0x0fff
  * cell ID mask | 0xf000 >> 4
  * 
+ * Some methods a specific to this sensor:
+ * * FrskyD::decodeCellVolt
+ * * FrskyD::decodeCellVoltId
+ * * FrskyD::sendCellVolt
+ * 
  * \brief LiPo cell voltage
  */
 #define FRSKY_D_CELL_VOLT    0x06    // FLVS-01
