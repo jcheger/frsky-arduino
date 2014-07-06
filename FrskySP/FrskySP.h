@@ -5,8 +5,6 @@
 #include "Arduino.h"
 #include "SoftwareSerial.h"
 
-#define FRSKY_ALT_ZERO          0x0000
-
 /**
  * info | comment
  * ---- | -------
@@ -25,7 +23,7 @@
  * info | comment
  * ---- | -------
  * sensor ID(s)   | FRSKY_SP_VARIO ~ FRSKY_SP_VARIO+15 (0x0110 ~ 0x011f)
- * physical ID(s) | 0 - Altimeter high precision
+ * physical ID(s) | 0 - Altimeter high precision / 3 - Altimeter normal precision
  * value          | ?
  * 
  * \todo what difference with ALT ?
@@ -312,7 +310,7 @@ class FrskySP {
     public:
         // methods
         FrskySP (int pinRx, int pinTx);
-        bool     available ();
+        int      available ();
         uint8_t  CRC (uint8_t *packet);
         bool     CRCcheck (uint8_t *packet);
         uint32_t lipoCell (uint8_t id, float val);
@@ -320,6 +318,7 @@ class FrskySP {
         byte     read ();
         void     sendData (uint16_t id, int32_t val);
         void     sendData (uint8_t type, uint16_t id, int32_t val);
+        byte     write (byte val);
 
         // attributes
         SoftwareSerial *mySerial;                                   //!<SoftwareSerial object

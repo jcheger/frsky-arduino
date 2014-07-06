@@ -70,7 +70,7 @@
  * ================
  * \image html Smart_Port_bb.png
  * 
- * * pull down resistor on TX line (100k)
+ * * pull down resistor on TX line (10k)
  * * diode between TX and RX (ex. 1N4108)
  * 
  * On this circuit, RX will hang after serial begin. There is a workaround that inverts the TX pinMode to INPUT and back
@@ -82,8 +82,8 @@
  * \see http://www.frsky-rc.com/
  * \see http://www.open-tx.org/
  * \copyright 2014 - Jean-Christophe Heger - Released under the LGPL 3.0 license.
- * \todo write an example to simulate an X8R receiver
  * \ChangeLog 2014-06-27 - public devel release
+ * \todo write an example to simulate an X8R receiver
  * 
  * \bug There is an unsolved bug with one value only, until now. While trying to send airspeed value 100 mph, converted
  * to knots, the receiver will not detect the sensor and not send the value to the remote neither. It works perfectly
@@ -141,9 +141,9 @@ FrskySP::FrskySP (int pinRx, int pinTx) {
  * Reverts the TX pin to OUTPUT mode after the first available byte
  * \brief SoftwareSerial.available() passthrough
  */
-bool FrskySP::available () {
+int FrskySP::available () {
     static bool mode = 1;                   // at first call, mode is INPUT
-    bool r = this->mySerial->available ();
+    int r = this->mySerial->available ();
     if (mode && r) {                        // RX freeze workaround
         pinMode (this->_pinTx, OUTPUT);     
         mode = 0;                           // mode is OUPUT from now
@@ -264,4 +264,11 @@ void FrskySP::sendData (uint8_t type, uint16_t id, int32_t val) {
     packet.byte[7] = this->CRC (packet.byte);
 
     for (i=0; i<8; i++) this->mySerial->write (packet.byte[i]);
+}
+
+/**
+ * \brief SoftwareSerial.write() passthrough
+ */
+byte FrskySP::write (byte val) {
+    return this->mySerial->write (val);
 }

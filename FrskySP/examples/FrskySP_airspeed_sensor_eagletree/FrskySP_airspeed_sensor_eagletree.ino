@@ -8,6 +8,12 @@
  * Yellow - SDA
  * Brown  - SCL
  *
+ * Remarks
+ * -------
+ * The Wire library is not really respective of the standards, and there is no popular replacement of it.
+ * Anyway it works with the EagleTree sensors. The Wire.begin function enables the internal pull-ups, so
+ * the is no need to add some external ones.
+ *
  * Documentation
  * -------------
  * http://www.eagletreesystems.com/Manuals/microsensor-i2c.pdf
