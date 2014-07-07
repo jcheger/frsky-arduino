@@ -87,11 +87,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul>
 <li>use an inverted serial communication at 9600bds</li>
 <li>compared to SP, the D protocol has no slowness issue (no time based polling) - then sensor can take as much time it needs to send data. Anyhow, don't send too much data without delay. It could saturate the receiver buffer and corrupt data.</li>
-<li>in Frsky's white paper, packets are supposed to be sent as frames (sets of data), on a period base</li>
-<li>the frames are used by the D hub, be are not necessary to OpenTX - only one value can be sent at a time</li>
-<li>by the way, the VFAS sensor does not use frames, but send individual packets for <a class="el" href="_frsky_d_8h.html#add38cdec5e8b9b4c6309c7a5f8ad5c75">FRSKY_D_CURRENT</a>, <a class="el" href="_frsky_d_8h.html#aabe1f973b1a62f335708382262e698c1">FRSKY_D_VOLTAGE_B</a> and <a class="el" href="_frsky_d_8h.html#a200f559eda0eb5d73e46d059a5e1ae2d">FRSKY_D_VOLTAGE_A</a>.</li>
 </ul>
-<p>Here is what Frsky planned in a first time: </p>
+<h2>Receiver behavior </h2>
+<p>The receiver only waits for data</p>
+<h2>Hub behavior </h2>
+<p>The hub is only compatible with the D protocol. It sends frames, based on this rule:</p>
 <table class="doxtable">
 <tr>
 <th>frame </th><th>period </th><th>sensors  </th></tr>
@@ -102,6 +102,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr>
 <td>3 </td><td>5s </td><td>GPS date and time </td></tr>
 </table>
+<h2>Some sensors behavior </h2>
+<p>Some sensors, such as VFAS, FLVS-01 or FVAS-02 can send D protocol telemetry without the hub.</p>
+<p>Allthough, those sensors do not use the concept of frames, and send periodically their data. Such sensors must be chained, in order to serialize data, else transmission will conflit between sensors.</p>
+<h2>Packet format </h2>
+<table class="doxtable">
+<tr>
+<th>byte(s) </th><th>description  </th></tr>
+<tr>
+<td>1 </td><td>0x5E - header </td></tr>
+<tr>
+<td>1 </td><td>sensor ID </td></tr>
+<tr>
+<td>2 (~4) </td><td>data (1) </td></tr>
+<tr>
+<td>1 </td><td>0x5E - footer (can be considered as next data header as well) </td></tr>
+</table>
+<p>(1) there are 2 exceptions that must be re-encoded from 1 to 2 bytes:</p>
+<ul>
+<li>0x5E (header / footer) -&gt; 0x5D 0x3E</li>
+<li>0x5D (exception marker) -&gt; 0x5D 0x3D</li>
+</ul>
 <h2>Connection draft </h2>
 <div class="image">
 <img src="D_ports_bb.png" alt="D_ports_bb.png"/>
@@ -122,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 3 2014 07:38:24 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 7 2014 16:31:49 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

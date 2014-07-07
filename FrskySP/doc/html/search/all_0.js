@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['available',['available',['../class_frsky_s_p.html#a0ca01f23021291af7ff6a0afe734698e',1,'FrskySP']]]
+  ['available',['available',['../class_frsky_s_p.html#a4e952af22d0f694b484d1e707341a04e',1,'FrskySP']]]
 ];

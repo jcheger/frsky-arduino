@@ -105,9 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a17d9eef9f78c585bb95b8f8037c3e874"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#a17d9eef9f78c585bb95b8f8037c3e874">FrskySP</a> (int pinRx, int pinTx)</td></tr>
 <tr class="memdesc:a17d9eef9f78c585bb95b8f8037c3e874"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a17d9eef9f78c585bb95b8f8037c3e874">More...</a><br/></td></tr>
 <tr class="separator:a17d9eef9f78c585bb95b8f8037c3e874"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ca01f23021291af7ff6a0afe734698e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#a0ca01f23021291af7ff6a0afe734698e">available</a> ()</td></tr>
-<tr class="memdesc:a0ca01f23021291af7ff6a0afe734698e"><td class="mdescLeft">&#160;</td><td class="mdescRight">SoftwareSerial.available() passthrough.  <a href="#a0ca01f23021291af7ff6a0afe734698e">More...</a><br/></td></tr>
-<tr class="separator:a0ca01f23021291af7ff6a0afe734698e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e952af22d0f694b484d1e707341a04e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#a4e952af22d0f694b484d1e707341a04e">available</a> ()</td></tr>
+<tr class="memdesc:a4e952af22d0f694b484d1e707341a04e"><td class="mdescLeft">&#160;</td><td class="mdescRight">SoftwareSerial.available() passthrough.  <a href="#a4e952af22d0f694b484d1e707341a04e">More...</a><br/></td></tr>
+<tr class="separator:a4e952af22d0f694b484d1e707341a04e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afde369a1a37eb485ffe2b9f5d88ac80a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#afde369a1a37eb485ffe2b9f5d88ac80a">CRC</a> (uint8_t *<a class="el" href="union_frsky_s_p_1_1packet.html">packet</a>)</td></tr>
 <tr class="memdesc:afde369a1a37eb485ffe2b9f5d88ac80a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the CRC of a packet.  <a href="#afde369a1a37eb485ffe2b9f5d88ac80a">More...</a><br/></td></tr>
 <tr class="separator:afde369a1a37eb485ffe2b9f5d88ac80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,6 +130,10 @@ byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ac36d023ad71b6e6b7cf3fab9bca14aff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#ac36d023ad71b6e6b7cf3fab9bca14aff">sendData</a> (uint8_t type, uint16_t id, int32_t val)</td></tr>
 <tr class="memdesc:ac36d023ad71b6e6b7cf3fab9bca14aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare the packet and send it.  <a href="#ac36d023ad71b6e6b7cf3fab9bca14aff">More...</a><br/></td></tr>
 <tr class="separator:ac36d023ad71b6e6b7cf3fab9bca14aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac16f6d3fa6d398d2b9270ed86e937c8e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac16f6d3fa6d398d2b9270ed86e937c8e"></a>
+byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#ac16f6d3fa6d398d2b9270ed86e937c8e">write</a> (byte val)</td></tr>
+<tr class="memdesc:ac16f6d3fa6d398d2b9270ed86e937c8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">SoftwareSerial.write() passthrough. <br/></td></tr>
+<tr class="separator:ac16f6d3fa6d398d2b9270ed86e937c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -175,18 +179,18 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>Warning</dt><dd>after opening the ports with SoftwareSerial, and because of the mux between TX and RX, RX will hang. The workaround is to revert the TX port as INPUT, and put it back again as OUTPUT at the first <a class="el" href="class_frsky_s_p.html#a0ca01f23021291af7ff6a0afe734698e" title="SoftwareSerial.available() passthrough. ">available()</a> call. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>after opening the ports with SoftwareSerial, and because of the mux between TX and RX, RX will hang. The workaround is to revert the TX port as INPUT, and put it back again as OUTPUT at the first <a class="el" href="class_frsky_s_p.html#a4e952af22d0f694b484d1e707341a04e" title="SoftwareSerial.available() passthrough. ">available()</a> call. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>allow the use <a href="http://www.pjrc.com/teensy/td_libs_AltSoftSerial.html">AltSoftSerial</a> instead - much faster than SerialSoftware, and no conflict with <a href="https://code.google.com/p/arduino-pinchangeint/">PinChangeInt</a> - see <a href="https://code.google.com/p/arduino-pinchangeint/wiki/Bugs">bugs</a>. </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a0ca01f23021291af7ff6a0afe734698e"></a>
+<a class="anchor" id="a4e952af22d0f694b484d1e707341a04e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool FrskySP::available </td>
+          <td class="memname">int FrskySP::available </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -447,7 +451,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 3 2014 09:20:57 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 7 2014 16:31:54 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -12,17 +12,40 @@
  * * compared to SP, the D protocol has no slowness issue (no time based polling) - then sensor can take as much time
  *   it needs to send data. Anyhow, don't send too much data without delay. It could saturate the receiver buffer and
  *   corrupt data.
- * * in Frsky's white paper, packets are supposed to be sent as frames (sets of data), on a period base
- * * the frames are used by the D hub, be are not necessary to OpenTX - only one value can be sent at a time
- * * by the way, the VFAS sensor does not use frames, but send individual packets, and so for the Smart Port altimeters
- *   that can be connected on D series receivers as well.
  * 
- * Frsky's hub timing behavior:
+ * Receiver behavior
+ * -----------------
+ * The receiver only waits for data
+ * 
+ * Hub behavior
+ * ------------
+ * The hub is only compatible with the D protocol. It sends frames, based on this rule:
+ * 
  * frame | period | sensors
  * ----- | ------ | -------
  * 1 | 200ms | accelerometers, altitude, temperature, voltage, current, rpm
  * 2 | 1s    | GPS (except date and time), fuel level
  * 3 | 5s    | GPS date and time
+ * 
+ * Some sensors behavior
+ * ---------------------
+ * Some sensors, such as VFAS, FLVS-01 or FVAS-02 can send D protocol telemetry without the hub.
+ * 
+ * Allthough, those sensors do not use the concept of frames, and send periodically their data. Such sensors must be
+ * chained, in order to serialize data, else transmission will conflit between sensors.
+ * 
+ * Packet format
+ * -------------
+ * byte(s) | description
+ * --------|------------
+ * 1       | 0x5E - header
+ * 1       | sensor ID
+ * 2 (~4)  | data (1)
+ * 1       | 0x5E - footer (can be considered as next data header as well)
+ * 
+ * (1) there are 2 exceptions that must be re-encoded from 1 to 2 bytes:
+ * * 0x5E (header / footer)  -> 0x5D 0x3E
+ * * 0x5D (exception marker) -> 0x5D 0x3D
  * 
  * Connection draft
  * ----------------

@@ -106,6 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <h2>Sensor behavior </h2>
 <p>Genuine Frsky sensors: the sensor answers to every pool on its physical ID to announce its presence. If no data can be transmitted (no refresh), the sensor answers by an empty packet and a false CRC (type 0x00, ID 0x0000, value 0x00000000, CRC 0xFF).</p>
+<h2>Packet format </h2>
 <table class="doxtable">
 <tr>
 <th>byte(s) </th><th>descrption  </th></tr>
@@ -129,7 +130,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">float</span> b = (int) a * 0.1;  <span class="comment">// faster</span></div>
 </div><!-- fragment --> A float computing can take up to 40us. Unless you make a lot of them, there is plenty of time to answer within the poll cycle (11 ms). Allthough, OpenTX has many computing to do and has no time to lose. There is a little drift for the GPS and airspeed values shown on the remote control.</li>
 </ul>
-<p>Although, you must be careful around those issues:</p>
+<p>Anyway, you must be careful around those issues:</p>
 <ul>
 <li>only one sensor per physical ID (ex. GPS and normal precision altimeter share the same physical ID 3)</li>
 <li>only one answer per poll cycle (the <a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html">FrskySP_sensor_demo.ino</a> example shows how to handle multiple answers for one physical ID)</li>
@@ -140,7 +141,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <img src="Smart_Port_bb.png" alt="Smart_Port_bb.png"/>
 </div>
 <ul>
-<li>pull down resistor on TX line (100k)</li>
+<li>pull down resistor on TX line (22k)</li>
 <li>diode between TX and RX (ex. 1N4108)</li>
 </ul>
 <p>On this circuit, RX will hang after serial begin. There is a workaround that inverts the TX pinMode to INPUT and back to OUTPUT.</p>
@@ -152,14 +153,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dd>
 <a href="http://www.open-tx.org/">http://www.open-tx.org/</a> </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>2014 - Jean-Christophe Heger - Released under the LGPL 3.0 license. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>write an example to simulate an X8R receiver </dd></dl>
-<dl class="ChangeLogs"><dt><b><a class="el" href="_change_logs.html#_ChangeLogs000001">ChangeLog:</a></b></dt><dd>2014-06-27 - public devel release</dd></dl>
+<dl class="ChangeLogs"><dt><b><a class="el" href="_change_logs.html#_ChangeLogs000001">ChangeLog:</a></b></dt><dd>2014-06-27 - public devel release </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>write an example to simulate an X8R receiver</dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd>There is an unsolved bug with one value only, until now. While trying to send airspeed value 100 mph, converted to knots, the receiver will not detect the sensor and not send the value to the remote neither. It works perfectly with 101 or 99 mph, but 100 mph will hang. <div class="fragment"><div class="line"><a class="code" href="class_frsky_s_p.html">FrskySP</a>.<a class="code" href="class_frsky_s_p.html#a5e64663b2b3a6bf2b0cf0afa0cdf49f4">sendData</a> (<a class="code" href="_frsky_s_p_8h.html#a0160facb8c1d27f1201b00a9852dfaf8">FRSKY_SP_AIR_SPEED</a>, 100 * 10 / 1.15077945);    <span class="comment">// packet: 0x10 00 0A 64 03 00 00 7E</span></div>
 </div><!-- fragment --> </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 3 2014 09:20:57 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 7 2014 16:31:54 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

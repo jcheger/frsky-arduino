@@ -34,6 +34,8 @@
  * be transmitted (no refresh), the sensor answers by an empty packet and a false CRC (type 0x00, ID 0x0000,
  * value 0x00000000, CRC 0xFF).
  * 
+ * Packet format
+ * -------------
  * byte(s) | descrption
  * --------|-----------
  * 1       | type (only 0x10 at now)
@@ -59,7 +61,7 @@
  * poll cycle (11 ms). Allthough, OpenTX has many computing to do and has no time to lose. There is a little drift for
  * the GPS and airspeed values shown on the remote control.
  * 
- * Although, you must be careful around those issues:
+ * Anyway, you must be careful around those issues:
  * * only one sensor per physical ID (ex. GPS and normal precision altimeter share the same physical ID 3)
  * * only one answer per poll cycle (the [FrskySP_sensor_demo.ino](\ref FrskySP_sensor_demo/FrskySP_sensor_demo.ino)
  *   example shows how to handle multiple answers for one physical ID)
@@ -70,7 +72,7 @@
  * ================
  * \image html Smart_Port_bb.png
  * 
- * * pull down resistor on TX line (10k)
+ * * pull down resistor on TX line (22k)
  * * diode between TX and RX (ex. 1N4108)
  * 
  * On this circuit, RX will hang after serial begin. There is a workaround that inverts the TX pinMode to INPUT and back

@@ -20,6 +20,7 @@ void setup () {
 
 void loop () {
   static int i = 0;
+  
   union packet_tag {
     uint8_t  byte[8];
     uint64_t uint64;
@@ -62,67 +63,69 @@ void loop () {
 
 void decode (byte *packet) {
   uint16_t lid = packet[2] << 8 | packet[1];
+  //uint32_t val = packet[6] << 24 | packet[5] << 16 | packet[4] << 8 | packet[3];
+  uint32_t val = packet[3] << 24 | packet[4] << 16 | packet[5] << 8 | packet[6];
   
   switch (lid & 0xfff0) {
     case 0x0100:
-      Serial << _HEX(lid) << " (Altitude): " << endl;
+      Serial << _HEX(lid) << " (Altitude): " << val << endl;
       break;
     case 0x0110:
-      Serial << _HEX(lid) << " (Vario): " << endl;
+      Serial << _HEX(lid) << " (Vario): " << val << endl;
       break;
     case 0x0200:
-      Serial << _HEX(lid) << " (Current): " << endl;
+      Serial << _HEX(lid) << " (Current): " << val << endl;
       break;
     case 0x0210:
-      Serial << _HEX(lid) << " (VFAS): " << endl;
+      Serial << _HEX(lid) << " (VFAS): " << val << endl;
       break;
     case 0x0300:
-      Serial << _HEX(lid) << " (Lipo Cells): " << endl;
+      Serial << _HEX(lid) << " (Lipo Cells): " << val << endl;
       break;
     case 0x0400:
-      Serial << _HEX(lid) << " (Temp1): " << endl;
+      Serial << _HEX(lid) << " (Temp1): " << val << endl;
       break;
     case 0x0410:
-      Serial << _HEX(lid) << " (Temp2): " << endl;
+      Serial << _HEX(lid) << " (Temp2): " << val << endl;
       break;
     case 0x0500:
-      Serial << _HEX(lid) << " (RPM): " << endl;
+      Serial << _HEX(lid) << " (RPM): " << val << endl;
       break;
     case 0x0600:
-      Serial << _HEX(lid) << " (Fuel level): " << endl;
+      Serial << _HEX(lid) << " (Fuel level): " << val << endl;
       break;
     case 0x0700:
-      Serial << _HEX(lid) << " (AccX): " << endl;
+      Serial << _HEX(lid) << " (AccX): " << val << endl;
       break;
     case 0x0710:
-      Serial << _HEX(lid) << " (AccY): " << endl;
+      Serial << _HEX(lid) << " (AccY): " << val << endl;
       break;
     case 0x0720:
-      Serial << _HEX(lid) << " (AccZ): " << endl;
+      Serial << _HEX(lid) << " (AccZ): " << val << endl;
       break;
     case 0x0800:
-      Serial << _HEX(lid) << " (GPS Long Lati): " << endl;
+      Serial << _HEX(lid) << " (GPS Long Lati): " << val << endl;
       break;
     case 0x0820:
-      Serial << _HEX(lid) << " (GPS Altitude): " << endl;
+      Serial << _HEX(lid) << " (GPS Altitude): " << val << endl;
       break;
     case 0x0830:
-      Serial << _HEX(lid) << " (GPS Speed): " << endl;
+      Serial << _HEX(lid) << " (GPS Speed): " << val << endl;
       break;
     case 0x0840:
-      Serial << _HEX(lid) << " (GPS Course): " << endl;
+      Serial << _HEX(lid) << " (GPS Course): " << val << endl;
       break;
     case 0x0850:
-      Serial << _HEX(lid) << " (GPS Date Time): " << endl;
+      Serial << _HEX(lid) << " (GPS Date Time): " << val << endl;
       break;
     case 0x0900:
-      Serial << _HEX(lid) << " (A3): " << endl;
+      Serial << _HEX(lid) << " (A3): " << val << endl;
       break;
     case 0x0910:
-      Serial << _HEX(lid) << " (A4): " << endl;
+      Serial << _HEX(lid) << " (A4): " << val << endl;
       break;
     case 0x0a00:
-      Serial << _HEX(lid) << " (Air Speed): " << endl;
+      Serial << _HEX(lid) << " (Air Speed): " << val << endl;
       break;
     case 0xf100:
       switch (lid) {
