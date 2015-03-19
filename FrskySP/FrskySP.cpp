@@ -196,7 +196,7 @@ bool FrskySP::CRCcheck (uint8_t *packet) {
  */
 uint32_t FrskySP::lipoCell (uint8_t id, float val) {
     val *= 500;
-    return (uint32_t) val << 8 | id;
+    return (uint32_t) val << 8 | CellMax<<4| id;
 }
 
 /**
@@ -220,7 +220,7 @@ uint32_t FrskySP::lipoCell (uint8_t id, float val) {
 uint32_t FrskySP::lipoCell (uint8_t id, float val1, float val2) {
     val1 *= 500;
     val2 *= 500;
-    return ((uint32_t) val2 & 0x0fff) << 20 | ((uint32_t) val1 & 0x0fff) << 8 | 0;
+    return ((uint32_t) val2 & 0x0fff) << 20 | ((uint32_t) val1 & 0x0fff) << 8 |CellMax<<4|id;
 }
 
 /**
