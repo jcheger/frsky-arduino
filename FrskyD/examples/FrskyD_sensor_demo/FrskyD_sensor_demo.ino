@@ -22,7 +22,8 @@ void loop () {
   static int i = 0;
   static float alt = 10.0;
 
-  Serial << "Alt: " << alt << "\n";
+  Serial.print ("Alt: ");
+  Serial.println (alt);
 
   FrskyD.sendData (FRSKY_D_ACCX,  1.1 * 1000.0);
   FrskyD.sendData (FRSKY_D_ACCY, -1.2 * 1000.0);
