@@ -7,11 +7,11 @@
 
 var indexSectionsWithContent =
 {
-  0: "abcflmprstuw",
+  0: "_abcflmprstuw",
   1: "fp",
   2: "f",
   3: "acflrsw",
-  4: "bmu",
+  4: "_bmu",
   5: "f",
   6: "bct"
 };

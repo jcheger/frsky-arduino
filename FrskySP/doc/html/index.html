@@ -106,7 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <h2>Sensor behavior </h2>
 <p>Genuine Frsky sensors: the sensor answers to every pool on its physical ID to announce its presence. If no data can be transmitted (no refresh), the sensor answers by an empty packet and a false CRC (type 0x00, ID 0x0000, value 0x00000000, CRC 0xFF).</p>
-<h2>Packet format </h2>
 <table class="doxtable">
 <tr>
 <th>byte(s) </th><th>descrption  </th></tr>
@@ -130,7 +129,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">float</span> b = (int) a * 0.1;  <span class="comment">// faster</span></div>
 </div><!-- fragment --> A float computing can take up to 40us. Unless you make a lot of them, there is plenty of time to answer within the poll cycle (11 ms). Allthough, OpenTX has many computing to do and has no time to lose. There is a little drift for the GPS and airspeed values shown on the remote control.</li>
 </ul>
-<p>Anyway, you must be careful around those issues:</p>
+<p>Although, you must be careful around those issues:</p>
 <ul>
 <li>only one sensor per physical ID (ex. GPS and normal precision altimeter share the same physical ID 3)</li>
 <li>only one answer per poll cycle (the <a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html">FrskySP_sensor_demo.ino</a> example shows how to handle multiple answers for one physical ID)</li>
@@ -141,7 +140,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <img src="Smart_Port_bb.png" alt="Smart_Port_bb.png"/>
 </div>
 <ul>
-<li>pull down resistor on TX line (22k)</li>
+<li>pull down resistor on TX line (100k)</li>
 <li>diode between TX and RX (ex. 1N4108)</li>
 </ul>
 <p>On this circuit, RX will hang after serial begin. There is a workaround that inverts the TX pinMode to INPUT and back to OUTPUT.</p>
@@ -160,7 +159,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 7 2014 16:31:54 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 24 2015 18:53:58 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

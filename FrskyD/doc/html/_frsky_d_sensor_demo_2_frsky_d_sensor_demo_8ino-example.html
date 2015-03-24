@@ -96,15 +96,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="_a0"></a><a class="code" href="class_frsky_d.html">FrskyD</a> <a class="code" href="class_frsky_d.html">FrskyD</a> (10, 11);</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
-<div class="line">  Serial.begin (115200);</div>
-<div class="line">  Serial.println (<span class="stringliteral">&quot;FrskyD sensor demo&quot;</span>);</div>
+<div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.ledSet (13);</div>
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> loop () {</div>
 <div class="line">  <span class="keyword">static</span> <span class="keywordtype">int</span> i = 0;</div>
 <div class="line">  <span class="keyword">static</span> <span class="keywordtype">float</span> alt = 10.0;</div>
-<div class="line"></div>
-<div class="line">  Serial &lt;&lt; <span class="stringliteral">&quot;Alt: &quot;</span> &lt;&lt; alt &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"></div>
 <div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a name="a1"></a><a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a2"></a><a class="code" href="_frsky_d_8h.html#a1d1ba130253b6847c629e08a17531f6a">FRSKY_D_ACCX</a>,  1.1 * 1000.0);</div>
 <div class="line">  <a class="code" href="class_frsky_d.html">FrskyD</a>.<a class="code" href="class_frsky_d.html#a755622d280a41aafcc6de3dcc386c3a9">sendData</a> (<a name="a3"></a><a class="code" href="_frsky_d_8h.html#ae8759e6d877e998b0756b16393219b7e">FRSKY_D_ACCY</a>, -1.2 * 1000.0);</div>
@@ -166,7 +163,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 31 2015 11:28:25 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 24 2015 18:54:09 for FrskyD by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

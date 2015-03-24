@@ -114,6 +114,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aadc268473cc85d91ad45c82c2171de8c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#aadc268473cc85d91ad45c82c2171de8c">CRCcheck</a> (uint8_t *<a class="el" href="union_frsky_s_p_1_1packet.html">packet</a>)</td></tr>
 <tr class="memdesc:aadc268473cc85d91ad45c82c2171de8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the CRC of a packet.  <a href="#aadc268473cc85d91ad45c82c2171de8c">More...</a><br/></td></tr>
 <tr class="separator:aadc268473cc85d91ad45c82c2171de8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fda60419c43a09412be0fb3049c2953"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#a2fda60419c43a09412be0fb3049c2953">ledSet</a> (int pin)</td></tr>
+<tr class="separator:a2fda60419c43a09412be0fb3049c2953"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60f08da0348bf72849bd81adeb634c94"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#a60f08da0348bf72849bd81adeb634c94">lipoCell</a> (uint8_t id, float val)</td></tr>
 <tr class="memdesc:a60f08da0348bf72849bd81adeb634c94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="class_frsky_s_p.html#a6fb4161eb3b2d9c93878824eba4ae20f" title="Lipo voltage data format for 2 cells. ">lipoCell(uint8_t id, float val1, float val2)</a>, but with only one cell.  <a href="#a60f08da0348bf72849bd81adeb634c94">More...</a><br/></td></tr>
 <tr class="separator:a60f08da0348bf72849bd81adeb634c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,6 +143,10 @@ Public Attributes</h2></td></tr>
 SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#a6c42aa9d8c0c6410dae4a47f2b62dbae">mySerial</a></td></tr>
 <tr class="memdesc:a6c42aa9d8c0c6410dae4a47f2b62dbae"><td class="mdescLeft">&#160;</td><td class="mdescRight">SoftwareSerial object. <br/></td></tr>
 <tr class="separator:a6c42aa9d8c0c6410dae4a47f2b62dbae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7ea7b7fb7a699870cbe82611761f767"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7ea7b7fb7a699870cbe82611761f767"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frsky_s_p.html#aa7ea7b7fb7a699870cbe82611761f767">_cellMax</a> = 0</td></tr>
+<tr class="memdesc:aa7ea7b7fb7a699870cbe82611761f767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Packet union (byte[8], uint64) <br/></td></tr>
+<tr class="separator:aa7ea7b7fb7a699870cbe82611761f767"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Frsky Smart Port class </p>
@@ -201,7 +207,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <p>SoftwareSerial.available() passthrough. </p>
 <p>Check if a byte is available on Smart Port</p>
 <p>Reverts the TX pin to OUTPUT mode after the first available byte </p>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_s_p_airspeed_sensor_eagletree_2_frsky_s_p_airspeed_sensor_eagletree_8ino-example.html#a1">FrskySP_airspeed_sensor_eagletree/FrskySP_airspeed_sensor_eagletree.ino</a>, <a class="el" href="_frsky_s_p_rpm_sensor_freqcount_2_frsky_s_p_rpm_sensor_freqcount_8ino-example.html#a1">FrskySP_rpm_sensor_freqcount/FrskySP_rpm_sensor_freqcount.ino</a>, <a class="el" href="_frsky_s_p_rpm_sensor_interrupt_2_frsky_s_p_rpm_sensor_interrupt_8ino-example.html#a1">FrskySP_rpm_sensor_interrupt/FrskySP_rpm_sensor_interrupt.ino</a>, and <a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html#a1">FrskySP_sensor_demo/FrskySP_sensor_demo.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_s_p_airspeed_sensor_eagletree_2_frsky_s_p_airspeed_sensor_eagletree_8ino-example.html#a1">FrskySP_airspeed_sensor_eagletree/FrskySP_airspeed_sensor_eagletree.ino</a>, <a class="el" href="_frsky_s_p_rpm_sensor_freqcount_2_frsky_s_p_rpm_sensor_freqcount_8ino-example.html#a1">FrskySP_rpm_sensor_freqcount/FrskySP_rpm_sensor_freqcount.ino</a>, <a class="el" href="_frsky_s_p_rpm_sensor_interrupt_2_frsky_s_p_rpm_sensor_interrupt_8ino-example.html#a1">FrskySP_rpm_sensor_interrupt/FrskySP_rpm_sensor_interrupt.ino</a>, and <a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html#a2">FrskySP_sensor_demo/FrskySP_sensor_demo.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -256,6 +262,30 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 
 </div>
 </div>
+<a class="anchor" id="a2fda60419c43a09412be0fb3049c2953"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FrskySP::ledSet </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Enable LED toggling while sending data </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>LED pin (usually 13) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html#a1">FrskySP_sensor_demo/FrskySP_sensor_demo.ino</a>.</dd>
+</dl>
+</div>
+</div>
 <a class="anchor" id="a60f08da0348bf72849bd81adeb634c94"></a>
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +319,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>formated data for cell voltage (1 cell) </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html#a5">FrskySP_sensor_demo/FrskySP_sensor_demo.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html#a6">FrskySP_sensor_demo/FrskySP_sensor_demo.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -383,7 +413,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
   </table>
   </dd>
 </dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_s_p_airspeed_sensor_eagletree_2_frsky_s_p_airspeed_sensor_eagletree_8ino-example.html#a3">FrskySP_airspeed_sensor_eagletree/FrskySP_airspeed_sensor_eagletree.ino</a>, <a class="el" href="_frsky_s_p_rpm_sensor_freqcount_2_frsky_s_p_rpm_sensor_freqcount_8ino-example.html#a3">FrskySP_rpm_sensor_freqcount/FrskySP_rpm_sensor_freqcount.ino</a>, <a class="el" href="_frsky_s_p_rpm_sensor_interrupt_2_frsky_s_p_rpm_sensor_interrupt_8ino-example.html#a3">FrskySP_rpm_sensor_interrupt/FrskySP_rpm_sensor_interrupt.ino</a>, and <a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html#a3">FrskySP_sensor_demo/FrskySP_sensor_demo.ino</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="_frsky_s_p_airspeed_sensor_eagletree_2_frsky_s_p_airspeed_sensor_eagletree_8ino-example.html#a3">FrskySP_airspeed_sensor_eagletree/FrskySP_airspeed_sensor_eagletree.ino</a>, <a class="el" href="_frsky_s_p_rpm_sensor_freqcount_2_frsky_s_p_rpm_sensor_freqcount_8ino-example.html#a3">FrskySP_rpm_sensor_freqcount/FrskySP_rpm_sensor_freqcount.ino</a>, <a class="el" href="_frsky_s_p_rpm_sensor_interrupt_2_frsky_s_p_rpm_sensor_interrupt_8ino-example.html#a3">FrskySP_rpm_sensor_interrupt/FrskySP_rpm_sensor_interrupt.ino</a>, and <a class="el" href="_frsky_s_p_sensor_demo_2_frsky_s_p_sensor_demo_8ino-example.html#a4">FrskySP_sensor_demo/FrskySP_sensor_demo.ino</a>.</dd>
 </dl>
 </div>
 </div>
@@ -451,7 +481,7 @@ SoftwareSerial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 7 2014 16:31:54 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 24 2015 18:53:58 for FrskySP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

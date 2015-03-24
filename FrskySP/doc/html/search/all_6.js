@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['packet',['packet',['../union_frsky_s_p_1_1packet.html',1,'FrskySP']]]
+  ['myserial',['mySerial',['../class_frsky_s_p.html#a6c42aa9d8c0c6410dae4a47f2b62dbae',1,'FrskySP']]]
 ];

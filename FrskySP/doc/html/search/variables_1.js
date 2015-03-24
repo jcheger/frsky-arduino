@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['myserial',['mySerial',['../class_frsky_s_p.html#a6c42aa9d8c0c6410dae4a47f2b62dbae',1,'FrskySP']]]
+  ['byte',['byte',['../union_frsky_s_p_1_1packet.html#a6c89c4c8a689c520fae34b58101d43ee',1,'FrskySP::packet']]]
 ];
