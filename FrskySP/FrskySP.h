@@ -304,6 +304,19 @@
  */
 #define FRSKY_SP_SWR_ID         0xf105
 
+
+/**
+  * info | comment
+ * ---- | -------
+ * Battery Cell   | max. Count of cells
+ * physical ID(s) | ?
+ * value          | ?
+ * 
+ * \brief unknown
+ * \for lipo Cell packet
+ */
+#define CellMax		3
+
 /**
  * Frsky Smart Port class
  */
