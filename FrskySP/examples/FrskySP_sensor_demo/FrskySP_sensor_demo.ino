@@ -31,8 +31,14 @@ void loop () {
           break;
           
         case 0xA1:  // Physical ID 1 - FLVSS Lipo sensor
-          if (i % 2 == 0) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (0, 1.11, 2.22));
-          if (i % 2 == 1) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (2, 3.33));
+          if (i % 8 == 0) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (0, 1.01, 1.02));
+          if (i % 8 == 1) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (2, 1.03, 1.04));
+          if (i % 8 == 2) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (4, 1.05, 1.06));
+          if (i % 8 == 3) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (6, 1.07, 1.08));
+          if (i % 8 == 4) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (8, 1.09));
+          if (i % 8 == 5) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (9, 1.10));
+          if (i % 8 == 6) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (10, 1.11));
+          if (i % 8 == 7) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (11, 1.12));
           break;
           
         case 0x22:  // Physical ID 2 - FAS-40S current sensor

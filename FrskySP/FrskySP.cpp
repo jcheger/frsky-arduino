@@ -3,10 +3,6 @@
  * 
  * This library is not designed to decode data on the transmitter, but on the receiver side. OpenTX makes the rest of
  *  the job on the transmitter.
- * 
- * WARNING: you MUST use a recent version of the Arduino's IDE (ex. 1.6.1, but at least 1.0.6 ?). SoftwareSerial will
- *          bug with 57600 bds with older versions. If you print the incoming data, the header 0x7E will be received
- *          as 0xBE. See this post for explanation: http://www.rcgroups.com/forums/showthread.php?t=2245978&page=10
  *
  * This development is completely independent of Frsky or OpenTX.
  * 
@@ -38,8 +34,6 @@
  * be transmitted (no refresh), the sensor answers by an empty packet and a false CRC (type 0x00, ID 0x0000,
  * value 0x00000000, CRC 0xFF).
  * 
- * Packet format
- * -------------
  * byte(s) | descrption
  * --------|-----------
  * 1       | type (only 0x10 at now)
@@ -65,7 +59,7 @@
  * poll cycle (11 ms). Allthough, OpenTX has many computing to do and has no time to lose. There is a little drift for
  * the GPS and airspeed values shown on the remote control.
  * 
- * Anyway, you must be careful around those issues:
+ * Although, you must be careful around those issues:
  * * only one sensor per physical ID (ex. GPS and normal precision altimeter share the same physical ID 3)
  * * only one answer per poll cycle (the [FrskySP_sensor_demo.ino](\ref FrskySP_sensor_demo/FrskySP_sensor_demo.ino)
  *   example shows how to handle multiple answers for one physical ID)
@@ -76,7 +70,7 @@
  * ================
  * \image html Smart_Port_bb.png
  * 
- * * pull down resistor on TX line (22k)
+ * * pull down resistor on TX line (100k)
  * * diode between TX and RX (ex. 1N4108)
  * 
  * On this circuit, RX will hang after serial begin. There is a workaround that inverts the TX pinMode to INPUT and back
@@ -158,6 +152,23 @@ int FrskySP::available () {
 }
 
 /**
+ * Enable LED toggling while sending data
+ * \param int LED pin (usually 13)
+ */
+void FrskySP::ledSet (int pin) {
+	this->_pinLed = pin;
+	pinMode (pin, OUTPUT);
+}
+
+/**
+ * Toggle LED thile sending data
+ * \param int state (LOW or HIGH)
+ */
+void FrskySP::_ledToggle (int state) {
+	if (this->_pinLed >= 0) digitalWrite (this->_pinLed, state);
+}
+
+/**
  * \brief Calculate the CRC of a packet
  * \see https://github.com/opentx/opentx/blob/next/radio/src/telemetry/frsky_sport.cpp
  * \param packet packet pointer (in byte[8] presentation)
@@ -193,31 +204,15 @@ bool FrskySP::CRCcheck (uint8_t *packet) {
 }
 
 /**
- * Enable LED toggling while sending data
- * \param int LED pin (usually 13)
- */
-void FrskySP::ledSet (int pin) {
-	this->_pinLed = pin;
-	pinMode (pin, OUTPUT);
-}
-
-/**
- * Toggle LED thile sending data
- * \param int state (LOW or HIGH)
- */
-void FrskySP::_ledToggle (int state) {
-	if (this->_pinLed >= 0) digitalWrite (this->_pinLed, state);
-}
-
-/**
  * \brief Same as lipoCell(uint8_t id, float val1, float val2), but with only one cell.
  * \param id cell ID (0~11)
  * \param val cell voltage
  * \return formated data for cell voltage (1 cell)
  */
 uint32_t FrskySP::lipoCell (uint8_t id, float val) {
+	if (this->_cellMax < id + 1) this->_cellMax = id + 1;
     val *= 500;
-    return (uint32_t) val << 8 | id;
+    return (uint32_t) val << 8 | this->_cellMax << 4 | id;
 }
 
 /**
@@ -239,9 +234,10 @@ uint32_t FrskySP::lipoCell (uint8_t id, float val) {
  * \return formated data for cell voltage (2 cells)
  */
 uint32_t FrskySP::lipoCell (uint8_t id, float val1, float val2) {
+	if (this->_cellMax < id + 2) this->_cellMax = id + 2;
     val1 *= 500;
     val2 *= 500;
-    return ((uint32_t) val2 & 0x0fff) << 20 | ((uint32_t) val1 & 0x0fff) << 8 | 0;
+    return ((uint32_t) val2 & 0x0fff) << 20 | ((uint32_t) val1 & 0x0fff) << 8 | this->_cellMax << 4 | id;
 }
 
 /**
