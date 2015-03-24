@@ -14,16 +14,12 @@
 FrskyD FrskyD (10, 11);
 
 void setup() {
-  Serial.begin (115200);
-  Serial.println ("FrskyD sensor demo");
+  FrskyD.ledSet (13);
 }
 
 void loop () {
   static int i = 0;
   static float alt = 10.0;
-
-  Serial.print ("Alt: ");
-  Serial.println (alt);
 
   FrskyD.sendData (FRSKY_D_ACCX,  1.1 * 1000.0);
   FrskyD.sendData (FRSKY_D_ACCY, -1.2 * 1000.0);

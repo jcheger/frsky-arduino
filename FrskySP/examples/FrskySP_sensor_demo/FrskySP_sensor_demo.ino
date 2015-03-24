@@ -1,7 +1,7 @@
 /*
  * Requirements
  * ------------
- * - FrskyD library - https://github.com/jcheger/frsky-arduino
+ * - FrskySP library - https://github.com/jcheger/frsky-arduino
  * 
  * 
  * origin: https://github.com/jcheger/frsky-arduino
@@ -14,13 +14,15 @@
 FrskySP FrskySP (10, 11);
 
 void setup () {
+  FrskySP.ledSet (13);
 }
 
 void loop () {
   static unsigned int i = 0;  // increment used when several values must be sent within the same physical ID - only one per cycle
   static float alt = 100.0;   // for demonstration only - altitude must be over 0 to be set as a reference in OpenTX
-
+  
   while (FrskySP.available ()) {
+    
     if (FrskySP.read () == 0x7E) {
       while (!FrskySP.available ());  // wait for the next byte
       switch (FrskySP.read ()) {

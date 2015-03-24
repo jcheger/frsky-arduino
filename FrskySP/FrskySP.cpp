@@ -3,6 +3,10 @@
  * 
  * This library is not designed to decode data on the transmitter, but on the receiver side. OpenTX makes the rest of
  *  the job on the transmitter.
+ * 
+ * WARNING: you MUST use a recent version of the Arduino's IDE (ex. 1.6.1, but at least 1.0.6 ?). SoftwareSerial will
+ *          bug with 57600 bds with older versions. If you print the incoming data, the header 0x7E will be received
+ *          as 0xBE. See this post for explanation: http://www.rcgroups.com/forums/showthread.php?t=2245978&page=10
  *
  * This development is completely independent of Frsky or OpenTX.
  * 
@@ -189,6 +193,23 @@ bool FrskySP::CRCcheck (uint8_t *packet) {
 }
 
 /**
+ * Enable LED toggling while sending data
+ * \param int LED pin (usually 13)
+ */
+void FrskySP::ledSet (int pin) {
+	this->_pinLed = pin;
+	pinMode (pin, OUTPUT);
+}
+
+/**
+ * Toggle LED thile sending data
+ * \param int state (LOW or HIGH)
+ */
+void FrskySP::_ledToggle (int state) {
+	if (this->_pinLed >= 0) digitalWrite (this->_pinLed, state);
+}
+
+/**
  * \brief Same as lipoCell(uint8_t id, float val1, float val2), but with only one cell.
  * \param id cell ID (0~11)
  * \param val cell voltage
@@ -265,7 +286,9 @@ void FrskySP::sendData (uint8_t type, uint16_t id, int32_t val) {
     packet.uint64  = (uint64_t) type | (uint64_t) id << 8 | (int64_t) val << 24;
     packet.byte[7] = this->CRC (packet.byte);
 
+	this->_ledToggle (HIGH);
     for (i=0; i<8; i++) this->mySerial->write (packet.byte[i]);
+	this->_ledToggle (LOW);
 }
 
 /**

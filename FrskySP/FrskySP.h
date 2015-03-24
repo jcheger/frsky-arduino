@@ -313,6 +313,7 @@ class FrskySP {
         int      available ();
         uint8_t  CRC (uint8_t *packet);
         bool     CRCcheck (uint8_t *packet);
+		void     ledSet (int pin);
         uint32_t lipoCell (uint8_t id, float val);
         uint32_t lipoCell (uint8_t id, float val1, float val2);
         byte     read ();
@@ -325,6 +326,8 @@ class FrskySP {
         union packet;                                               //!<Packet union (byte[8], uint64)
         
     private:
+		void _ledToggle (int state);
+		int _pinLed = -1;											//!<LED pin (-1 = disabled)
         int _pinRx;                                                 //!<RX pin used by SoftwareSerial
         int _pinTx;                                                 //!<TX pin used by SoftwareSerial
     
