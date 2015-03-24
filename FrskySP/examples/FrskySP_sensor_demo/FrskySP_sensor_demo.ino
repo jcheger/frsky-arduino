@@ -2,7 +2,7 @@
  * Requirements
  * ------------
  * - FrskySP library - https://github.com/jcheger/frsky-arduino
- * 
+ * - Recent version of Arduino's IDE (ex. 1.6.1), else SoftwareSerial will fail at 57600 bds.
  * 
  * origin: https://github.com/jcheger/frsky-arduino
  * author: Jean-Christophe Heger <jcheger@ordinoscope.net>
@@ -30,7 +30,8 @@ void loop () {
         case 0x00:  // Physical ID 0 - Vario2 (altimeter high precision)
           break;
           
-        case 0xA1:  // Physical ID 1 - FLVSS Lipo sensor
+        case 0xA1:  // Physical ID 1 - FLVSS Lipo sensor (can be sent with one or two cell voltages)
+          // works better by sending only on cell voltage for a large amount of cells
           if (i % 8 == 0) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (0, 1.01, 1.02));
           if (i % 8 == 1) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (2, 1.03, 1.04));
           if (i % 8 == 2) FrskySP.sendData (FRSKY_SP_CELLS, FrskySP.lipoCell (4, 1.05, 1.06));
