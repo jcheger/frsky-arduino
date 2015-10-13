@@ -9,9 +9,9 @@
  * What to know about Smart Port
  * =============================
  * * use an inverted serial communication at 57600bds muxed on one port
- * * the receiver polls 27 physical sensors periodically
+ * * the receiver polls 28 physical sensors periodically
  * * compare to D, the SP protocol seems much faster, but maybe not - it's easier to use for data encoding, and is
- *   nicer to have a bus than a hub, but the polling of 27 IDs takes time (i.e. if a sensor has many values, it can
+ *   nicer to have a bus than a hub, but the polling of 28 IDs takes time (i.e. if a sensor has many values, it can
  *   send only one at a time, ex. GPS).
  * 
  * Receiver behavior
@@ -153,7 +153,7 @@ int FrskySP::available () {
 
 /**
  * Enable LED toggling while sending data
- * \param int LED pin (usually 13)
+ * \param pin (usually 13)
  */
 void FrskySP::ledSet (int pin) {
 	this->_pinLed = pin;
@@ -162,7 +162,7 @@ void FrskySP::ledSet (int pin) {
 
 /**
  * Toggle LED thile sending data
- * \param int state (LOW or HIGH)
+ * \param state (LOW or HIGH)
  */
 void FrskySP::_ledToggle (int state) {
 	if (this->_pinLed >= 0) digitalWrite (this->_pinLed, state);

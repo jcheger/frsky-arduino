@@ -5,6 +5,9 @@
 #include "Arduino.h"
 #include "SoftwareSerial.h"
 
+/**
+ * unused
+ */
 #define FRSKY_ALT_ZERO          0x0000
 
 /**

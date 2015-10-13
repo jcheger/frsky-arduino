@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['frsky_5falt_5fzero',['FRSKY_ALT_ZERO',['../_frsky_s_p_8h.html#a801381d1d2561332315e21cb5e4e9160',1,'FrskySP.h']]],
   ['frsky_5fsp_5fa3',['FRSKY_SP_A3',['../_frsky_s_p_8h.html#ac628d7f9468293731bf70176724ce1df',1,'FrskySP.h']]],
   ['frsky_5fsp_5fa4',['FRSKY_SP_A4',['../_frsky_s_p_8h.html#afb4af370d043834326d2eb040b7f1739',1,'FrskySP.h']]],
   ['frsky_5fsp_5faccx',['FRSKY_SP_ACCX',['../_frsky_s_p_8h.html#ae0c515c72a74eec97fb8256940d07b2e',1,'FrskySP.h']]],
