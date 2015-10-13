@@ -21,7 +21,7 @@
  * byte | description
  * -----|------------
  * 0x7E | poll header
- * ID   | physical ID (1-27) computed with a CRC (see \ref FrskySP_sensor_demo/FrskySP_sensor_demo.ino for the full list of polled IDs)
+ * ID   | physical ID (1-28) computed with a CRC (see \ref FrskySP_sensor_demo/FrskySP_sensor_demo.ino for the full list of polled IDs)
  * 
  * * The receiver will poll the IDs in sequence to find which one is present.
  * * If only one physical ID is found, the receiver will alternate the sensor polling and the search (present sensor,
